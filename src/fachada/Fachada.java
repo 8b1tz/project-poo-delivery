@@ -50,7 +50,8 @@ public class Fachada {
 
 	public static Cliente cadastrarCliente(String telefone, String nome, String endereco) {
 		Cliente cliente;
-		cliente = new Cliente(telefone, nome, endereco);
+		ArrayList<Pedido> pedidos = new ArrayList<>();
+		cliente = new Cliente(telefone, nome, endereco, pedidos);
 		repositorio.adicionar(cliente);
 		return cliente;
 	}
@@ -98,6 +99,7 @@ public class Fachada {
 					if (pr.getId() == idproduto) {
 						pe.addProduto(pr);
 						pr.addPedido(pe);
+						pe.getCliente().addPedido(pe);
 					}
 				}
 			}
@@ -155,32 +157,30 @@ public class Fachada {
 	}
 
 	public static ArrayList<Produto> consultarProdutoTop() {
-		ArrayList<Produto> topFim = new ArrayList<>();
-		ArrayList<Produto> res = new ArrayList<>();
-		HashMap<Produto, Integer> contagem = new HashMap<>();
-		for (Pedido pe : repositorio.getPedidos()) {
-			for (Produto pr : pe.getProdutos()) {
-				topFim.add(pr);
-			}
-		}
-		for (Produto p : topFim) {
-			if (!contagem.containsKey(p)) {
-				contagem.put(p, 1);
-			} else {
-				contagem.put(p, contagem.get(p) + 1);
-			}
-		}
-		Map<Produto, Integer> sortedNewMap = contagem.entrySet().stream()
-				.sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-		sortedNewMap.forEach((key, val) -> {
-			System.out.println(key + " = " + val.toString());
-		});
-		for (Produto p : sortedNewMap.keySet()) {
-			res.add(p);
-		}
+        ArrayList<Produto> res = new ArrayList<>();
+        HashMap<Produto, Integer> contagem = new HashMap<>();
 
-		return res;
+        for(Pedido pe : repositorio.getPedidos()) {
+            for(Produto prod : pe.getProdutos()) {
+                if (contagem.containsKey(prod)) {
+                    contagem.put(prod, contagem.get(prod) + 1);
+                }
+                else {
+                    contagem.put(prod, 1);
+                }
+            }}
 
-	}
+        Map<Produto, Integer> sortedNewMap = contagem.entrySet().stream()
+                .sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, 
+                        (e1, e2) -> e1, LinkedHashMap::new));
+
+        sortedNewMap.forEach((key, val) -> {
+            //System.out.println(key + " = " + val.toString());
+            res.add(key);
+        });
+
+        return res;
+
+    }
 }

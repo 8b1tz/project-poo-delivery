@@ -29,13 +29,6 @@ public class PedidoExpress extends Pedido {
 		total = total + this.taxaEntrega;
 		return total;
 	}
-
-	@Override
-	public String toString() {
-		return "Pedido [id: " + getId() + ", cliente: " + getCliente().getNome() + ", entregador: " + getEntregador()
-				+ ", datahora: " + getDatahora() + ", valortotal: " + getValortotal() + ", pago: " + isPago()
-				+ ", produtos: " + getProdutos() + ", taxaentrega: " + getTaxaEntrega() + "]";
-	}
 	@Override
     public double valortotal() {
         double total = 0.0;
@@ -45,4 +38,12 @@ public class PedidoExpress extends Pedido {
         total = total + this.taxaEntrega;
         return total;
     }
+
+	@Override
+	public String toString() {
+		return "Pedido [id: " + getId() + ", cliente: " + getCliente().getNome() + ", entregador: " + getEntregador()
+				+ ", datahora: " + getDatahora() + ", valortotal: " + getValortotal() + ", pago: " + isPago()
+				+ ", idProdutos: " + getProdutosIds() + ", taxaentrega: " + getTaxaEntrega() + "]";
+	}
+
 }

@@ -106,12 +106,6 @@ public class Pedido {
 		}
 		return total;
 	}
-
-	@Override
-	public String toString() {
-		return "Pedido [id: " + id + ", cliente: " + cliente.getNome() + ", entregador: " + entregador + ", datahora: "
-				+ datahora + ", valortotal: " + valortotal + ", pago: " + pago + ", produtos: " + produtos + "]";
-	}
 	public double valortotal() {
         double total = 0.0;
         for(Produto p : this.getProdutos()) {
@@ -119,4 +113,17 @@ public class Pedido {
         }
         return total;
     }
+	public ArrayList<Integer> getProdutosIds() {
+		ArrayList<Integer> res = new ArrayList<>();
+		for (Produto p : getProdutos()) {
+			res.add(p.getId());
+		}
+		return res;
+	}
+
+	@Override
+	public String toString() {
+		return "Pedido [id: " + id + ", cliente: " + cliente.getNome() + ", entregador: " + entregador + ", datahora: "
+				+ datahora + ", valortotal: " + valortotal + ", pago: " + pago + ", idProdutos: " +  getProdutosIds() + "]";
+	}
 }
