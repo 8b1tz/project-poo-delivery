@@ -1,10 +1,13 @@
 package modelo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class PedidoExpress extends Pedido {
 	private double taxaEntrega;
+	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
 
 	public PedidoExpress(int id, LocalDateTime datahora, double valortotal, String entregador, boolean pago,
 			Cliente cliente, ArrayList<Produto> produtos, double taxaentrega) {
@@ -41,8 +44,9 @@ public class PedidoExpress extends Pedido {
 
 	@Override
 	public String toString() {
+		String formatada = getDatahora().format(formatter);
 		return "Pedido [id: " + getId() + ", cliente: " + getCliente().getNome() + ", entregador: " + getEntregador()
-				+ ", datahora: " + getDatahora() + ", valortotal: " + getValortotal() + ", pago: " + isPago()
+				+ ", datahora: " + formatada + ", valortotal: " + getValortotal() + ", pago: " + isPago()
 				+ ", idProdutos: " + getProdutosIds() + ", taxaentrega: " + getTaxaEntrega() + "]";
 	}
 

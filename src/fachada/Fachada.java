@@ -1,6 +1,7 @@
 package fachada;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -59,6 +60,7 @@ public class Fachada {
 	public static Pedido criarPedido(String telefone) {
 		idpedido++;
 		Cliente cli = null;
+		LocalDateTime agora = LocalDateTime.now();
 		ArrayList<Produto> prod = new ArrayList<>();
 		Pedido pedido;
 		for (Cliente c : repositorio.getClientes()) {
@@ -67,7 +69,7 @@ public class Fachada {
 			}
 		}
 		if (cli != null) {
-			pedido = new Pedido(idpedido, null, 0, null, false, cli, prod);
+			pedido = new Pedido(idpedido, agora, 0, null, false, cli, prod);
 			repositorio.adicionar(pedido);
 			return pedido;
 		}
@@ -75,23 +77,25 @@ public class Fachada {
 	}
 
 	public static Pedido criarPedido(String telefone, double taxaentrega) {
-		idpedido++;
-		Cliente cli = null;
-		ArrayList<Produto> prod = new ArrayList<>();
-		Pedido pedido;
-		for (Cliente c : repositorio.getClientes()) {
-			if (c.getTelefone() == telefone) {
-				cli = c;
-			}
-		}
-		if (cli != null) {
-			pedido = new PedidoExpress(idpedido, null, 0, null, false, cli, prod, taxaentrega);
-			repositorio.adicionar(pedido);
-			return pedido;
-		}
-		return null;
-	}
-
+        idpedido++;
+        Cliente cli = null;
+        LocalDateTime agora = LocalDateTime.now();
+        
+        ArrayList<Produto> prod = new ArrayList<>();
+        Pedido pedido;
+        for (Cliente c : repositorio.getClientes()) {
+            if (c.getTelefone() == telefone) {
+                cli = c;
+            }
+        }
+        if (cli != null) {
+            pedido = new PedidoExpress(idpedido, agora, 0, null, false, cli, prod, taxaentrega);
+            repositorio.adicionar(pedido);
+            return pedido;
+        }
+        return null;
+    }
+	
 	public static void adicionarProdutoPedido(int idpedido, int idproduto) {
 		for (Pedido pe : repositorio.getPedidos()) {
 			if (pe.getId() == idpedido) {
