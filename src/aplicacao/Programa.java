@@ -9,7 +9,7 @@ import modelo.Pedido;
 public class Programa {
 		public static void main(String[] args) throws Exception {
 			String texto;
-			
+			try {
 			Fachada.cadastrarProduto("TV", 2000.0);
 			Fachada.cadastrarProduto("NOTEBOOK", 3000.0);
 			Fachada.cadastrarProduto("PS4", 2000.0);
@@ -54,20 +54,23 @@ public class Programa {
 			// Pagando entregadores para pedido 1 e 2 + cancelando o 3
 
 			Fachada.getPedidoById(1).setEntregador("Joao");
-			Fachada.getPedidoById(1).setPago(true);
 			Fachada.getPedidoById(2).setEntregador("Jose");
-			Fachada.getPedidoById(2).setPago(true);
+			Fachada.pagarPedido(1,"Joao");
+			//Fachada.cancelarPedido(1);
+			//Fachada.adicionarProdutoPedido(1, 1);
+			Fachada.pagarPedido(2,"Jose");
 			Fachada.cancelarPedido(3);
-			
 			Fachada.getPedidoById(1).setValortotal(Fachada.getPedidoById(1).geraValortotal());
 			Fachada.getPedidoById(2).setValortotal(Fachada.getPedidoById(2).geraValortotal());;
 			Fachada.getPedidoById(4).setValortotal(Fachada.getPedidoById(4).geraValortotal());;
 			Fachada.getPedidoById(5).setValortotal(Fachada.getPedidoById(5).geraValortotal());;
-			
+			}catch (Exception e){
+				System.out.println(e.getMessage());
+			}
 			// Listar Produtos
 			texto = "\nListagem de "+ Fachada.listarProdutos("").size() + " produtos:\n";
 			if (Fachada.listarProdutos("").isEmpty())
-				texto += "não tem produto cadastrado\n";
+				texto += "nao tem produto cadastrado\n";
 			else 	
 				for(Produto p: Fachada.listarProdutos("")) 
 					texto +=  p + "\n"; 
@@ -75,7 +78,7 @@ public class Programa {
 			// Listar Clientes
 			texto += "\nListagem "+ Fachada.listarClientes().size() +" de clientes: \n";
 			if (Fachada.listarClientes().isEmpty())
-				texto += "não tem cliente cadastrado\n";
+				texto += "nao tem cliente cadastrado\n";
 			else 	
 				for(Cliente c: Fachada.listarClientes()) 
 					texto +=  c + "\n"; 
@@ -83,7 +86,7 @@ public class Programa {
 			// Listar Pedidos
 			texto += "\nListagem "+ Fachada.listarPedidos().size() +" de pedidos: \n";
 			if (Fachada.listarPedidos().isEmpty())
-				texto += "não tem cliente cadastrado\n";
+				texto += "nao tem cliente cadastrado\n";
 			else 	
 				for(Pedido p: Fachada.listarPedidos()) 
 					texto +=  p + "\n"; 
@@ -94,5 +97,6 @@ public class Programa {
 				texto +=  p + "\n";
 
 			System.out.println(texto);
+			
 		}
 }
