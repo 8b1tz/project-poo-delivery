@@ -109,13 +109,7 @@ public class Pedido {
 		}
 		return total;
 	}
-	public double valortotal() {
-        double total = 0.0;
-        for(Produto p : this.getProdutos()) {
-            total = total + p.getPreco();
-        }
-        return total;
-    }
+
 	public ArrayList<Integer> getProdutosIds() {
 		ArrayList<Integer> res = new ArrayList<>();
 		for (Produto p : getProdutos()) {
@@ -128,6 +122,6 @@ public class Pedido {
 	public String toString() {
 		String formatada = datahora.format(formatter);
 		return "Pedido [id: " + id + ", cliente: " + cliente.getNome() + ", entregador: " + entregador + ", datahora: "
-				+ formatada + ", valortotal: " + valortotal + ", pago: " + pago + ", idProdutos: " +  getProdutosIds() + "]";
+				+ formatada + ", valortotal: " + geraValortotal() + ", pago: " + pago + ", idProdutos: " +  getProdutosIds() + "]";
 	}
 }
