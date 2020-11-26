@@ -15,12 +15,14 @@ public class Programa {
 			Fachada.cadastrarProduto("PS4", 2000.0);
 			Fachada.cadastrarProduto("TABLET", 3500.0);
 			Fachada.cadastrarProduto("CELULAR", 2500.0);
+			//Fachada.cadastrarProduto("CELULAR", 2500.0);
 			
 			Fachada.cadastrarCliente("982828282", "Ana Julia", "Brasil"); //express
 			Fachada.cadastrarCliente("982845454", "Yohanna", "Japao");
 			Fachada.cadastrarCliente("982867762", "Amanda", "Canada");
 			Fachada.cadastrarCliente("982989898", "Maria", "Noruega");
 			Fachada.cadastrarCliente("983434343", "Fatima", "Alemanha");
+			//Fachada.cadastrarCliente("983434343", "Fatima", "Alemanha");
 			
 			Fachada.criarPedido("982845454");
 			Fachada.criarPedido("982867762");
@@ -29,27 +31,35 @@ public class Programa {
 			Fachada.criarPedido("982989898");
 			Fachada.criarPedido("983434343");
 			Fachada.criarPedido("982828282", 10); //express
+			//Fachada.criarPedido("9833343");
+			//Fachada.criarPedido("9833343",10);
 			
 			// Adicionando produtos nos pedidos
 			
 			Fachada.adicionarProdutoPedido(1, 1);
-			Fachada.adicionarProdutoPedido(3, 3);
-			Fachada.adicionarProdutoPedido(6, 4);
-			Fachada.adicionarProdutoPedido(7, 3);
-			Fachada.adicionarProdutoPedido(7, 5);
-			Fachada.adicionarProdutoPedido(2, 4);
-			Fachada.adicionarProdutoPedido(6, 3);
-			Fachada.adicionarProdutoPedido(4, 2);
-			Fachada.adicionarProdutoPedido(3, 3);
-			Fachada.adicionarProdutoPedido(4, 5);
-			Fachada.adicionarProdutoPedido(4, 2);
-			Fachada.adicionarProdutoPedido(3, 3);
-			Fachada.adicionarProdutoPedido(4, 5);
-			Fachada.adicionarProdutoPedido(5, 5);
-			Fachada.adicionarProdutoPedido(1, 5);
+			Fachada.adicionarProdutoPedido(1, 3);
+			Fachada.adicionarProdutoPedido(1, 4);
+			Fachada.adicionarProdutoPedido(1, 3);
 			Fachada.adicionarProdutoPedido(2, 5);
+			Fachada.adicionarProdutoPedido(2, 4);
 			Fachada.adicionarProdutoPedido(3, 3);
 			Fachada.adicionarProdutoPedido(4, 2);
+			Fachada.adicionarProdutoPedido(4, 3);
+			Fachada.adicionarProdutoPedido(4, 5);
+			Fachada.adicionarProdutoPedido(4, 2);
+			Fachada.adicionarProdutoPedido(5, 3);
+			Fachada.adicionarProdutoPedido(5, 5);
+			Fachada.adicionarProdutoPedido(5, 5);
+			Fachada.adicionarProdutoPedido(6, 5);
+			Fachada.adicionarProdutoPedido(6, 5);
+			Fachada.adicionarProdutoPedido(7, 3);
+			Fachada.adicionarProdutoPedido(7, 2);
+			//Fachada.adicionarProdutoPedido(7, 93);
+			//Fachada.adicionarProdutoPedido(97, 2);
+			//Fachada.removerProdutoPedido(75, 3);
+			//Fachada.removerProdutoPedido(7, 52);
+			//Fachada.removerProdutoPedido(1, 5);
+			
 			
 			// Pagando entregadores para pedido 1 e 2 + cancelando o 3
 
@@ -66,6 +76,7 @@ public class Programa {
 			Fachada.getPedidoById(5).setValortotal(Fachada.getPedidoById(5).geraValortotal());;
 			}catch (Exception e){
 				System.out.println(e.getMessage());
+				
 			}
 			// Listar Produtos
 			texto = "\nListagem de "+ Fachada.listarProdutos("").size() + " produtos:\n";

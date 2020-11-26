@@ -30,30 +30,42 @@ public class Fachada {
 		return repositorio.getPedidos();
 	}
 
-	public static Pedido getPedidoById(int idpedido) {
-		return repositorio.localizarPedido(idpedido);
+	public static Pedido getPedidoById(int idpedido)  throws Exception {
+		if (repositorio.localizarPedido(idpedido) != null) {
+			return repositorio.localizarPedido(idpedido);
+		}else {
+			throw new Exception("Id do pedido não encontrado");
+		}
 	}
 
 	public static ArrayList<Pedido> listarPedidos(String tel, int tipo) {
 		return repositorio.getPedidoByTel_Tipo(tel, tipo);
 	}
 
-	public static Produto cadastrarProduto(String nome, double preco) {
+	public static Produto cadastrarProduto(String nome, double preco)  throws Exception {
 		idproduto++;
 		ArrayList<Pedido> ped = new ArrayList<>();
 		;
 		Produto produto;
 		produto = new Produto(idproduto, nome, preco, ped);
-		repositorio.adicionar(produto);
-		return produto;
+		if(repositorio.localizarProduto(nome) == null) {
+			repositorio.adicionar(produto);
+			return produto;
+		}else {
+			throw new Exception("Produto com esse exato nome já existe");
+		}
 	}
 
-	public static Cliente cadastrarCliente(String telefone, String nome, String endereco) {
+	public static Cliente cadastrarCliente(String telefone, String nome, String endereco) throws Exception {
 		Cliente cliente;
 		ArrayList<Pedido> pedidos = new ArrayList<>();
 		cliente = new Cliente(telefone, nome, endereco, pedidos);
-		repositorio.adicionar(cliente);
-		return cliente;
+		if(repositorio.localizarCliente(telefone) == null) {
+			repositorio.adicionar(cliente);
+			return cliente;
+		}else {
+			throw new Exception("Cliente com esse telefone já existe");
+		}
 	}
 
 	public static Pedido criarPedido(String telefone) throws Exception {
@@ -69,82 +81,104 @@ public class Fachada {
             return pedido;
         }
         else {
-            throw new Exception("Cliente NULL");
+            throw new Exception("Cliente não existe");
         }
     }
 
-	public static Pedido criarPedido(String telefone, double taxaentrega) {
+	public static Pedido criarPedido(String telefone, double taxaentrega)  throws Exception {
         idpedido++;
         Cliente cli = null;
         LocalDateTime agora = LocalDateTime.now();
         
         ArrayList<Produto> prod = new ArrayList<>();
         Pedido pedido;
-        for (Cliente c : repositorio.getClientes()) {
-            if (c.getTelefone() == telefone) {
-                cli = c;
-            }
-        }
+        cli = repositorio.localizarCliente(telefone);
         if (cli != null) {
             pedido = new PedidoExpress(idpedido, agora, 0, null, false, cli, prod, taxaentrega);
             repositorio.adicionar(pedido);
             return pedido;
-        }
-        return null;
-    }
+            }
+        throw new Exception("Cliente não existe");
+	}
 	
-	public static void adicionarProdutoPedido(int idpedido, int idproduto) {
-		for (Pedido pe : repositorio.getPedidos()) {
-			if (pe.getId() == idpedido) {
-				for (Produto pr : repositorio.getProdutos("")) {
-					if (pr.getId() == idproduto) {
-						pe.addProduto(pr);
-						pr.addPedido(pe);
-						pe.getCliente().addPedido(pe);
+	public static void adicionarProdutoPedido(int idpedido, int idproduto) throws Exception {
+		Pedido pe;
+		Produto pr;
+		pe = repositorio.localizarPedido(idpedido);
+		pr = repositorio.localizarProduto(idproduto);
+		if (pe != null) {
+			if (pr != null) {
+					pe.addProduto(pr);
+					pr.addPedido(pe);
+					pe.getCliente().addPedido(pe);
+			}else {
+					throw new Exception("Produto com esse id não existe");
 					}
+		}else {
+			throw new Exception("Pedido com esse id não existe");
 				}
 			}
-		}
-	}
 
-	public static void removerProdutoPedido(int idpedido, int idproduto) {
-		for (Pedido pe : repositorio.getPedidos()) {
-			if (pe.getId() == idpedido) {
-				for (Produto pr : repositorio.getProdutos("")) {
-					if (pr.getId() == idproduto) {
-						pe.remProduto(pr);
-						pr.remPedido(pe);
+	public static void removerProdutoPedido(int idpedido, int idproduto)  throws Exception {
+		Pedido pe;
+		Produto pr;
+		pe = repositorio.localizarPedido(idpedido);
+		pr = repositorio.localizarProduto(idproduto);
+		if (pe != null) {
+			if (pr != null) {
+				if (pe.getProdutosIds().contains(idproduto)) {
+					pe.remProduto(pr);
+					pr.remPedido(pe);
+				}else {
+					throw new Exception("Produto com esse id não existe dentro desse Pedido");
 					}
+			}else {
+					throw new Exception("Produto com esse id não existe");
+					}
+		}else {
+			throw new Exception("Pedido com esse id não existe");
 				}
 			}
-		}
-	}
 
-	public static Pedido consultarPedido(int idpedido) {
+	public static Pedido consultarPedido(int idpedido) throws Exception {
 		Pedido res;
 		res = repositorio.localizarPedido(idpedido);
 		if (res != null) {
 			return res;
-		}
-		return null;
-	}
-
-	public static void pagarPedido(int idpedido, String nomeentregador) {
-		for (Pedido p : repositorio.getPedidos()) {
-			if (p.getId() == idpedido) {
-				p.setEntregador(nomeentregador);
-				p.setPago(true);
-			}
+		} else {
+			throw new Exception("Não existe esse pedido");
 		}
 	}
 
-	public static void cancelarPedido(int idpedido) {
-		for (Pedido p : repositorio.getPedidos()) {
-			if (p.getId() == idpedido) {
-				repositorio.remover(p);
-				break;
+	public static void pagarPedido(int idpedido, String nomeentregador) throws Exception {
+		Pedido res;
+		res = repositorio.localizarPedido(idpedido);
+		if (res == null) {
+			throw new Exception("Não existe esse pedido");
+		}
+		res.setEntregador(nomeentregador);
+		res.setPago(true);
+
+	}
+
+	public static void cancelarPedido(int idpedido) throws Exception {
+		Pedido res;
+		res = repositorio.localizarPedido(idpedido);
+		if (res == null) {
+			throw new Exception("Não existe esse pedido!");
+		}
+		for (Produto pr : repositorio.getProdutos("")) {
+			if (pr.getPedidos().contains(res)) {
+				pr.getPedidos().remove(res);
 			}
 		}
+		for (Cliente cl : repositorio.getClientes()) {
+			if (cl.getPedidos().contains(res)) {
+				cl.getPedidos().remove(res);
+			}
+		}
+		repositorio.remover(res);
+
 	}
 
 	public static double consultarArrecadacao(LocalDateTime dia) {
@@ -158,30 +192,29 @@ public class Fachada {
 	}
 
 	public static ArrayList<Produto> consultarProdutoTop() {
-        ArrayList<Produto> res = new ArrayList<>();
-        HashMap<Produto, Integer> contagem = new HashMap<>();
+		ArrayList<Produto> res = new ArrayList<>();
+		HashMap<Produto, Integer> contagem = new HashMap<>();
 
-        for(Pedido pe : repositorio.getPedidos()) {
-            for(Produto prod : pe.getProdutos()) {
-                if (contagem.containsKey(prod)) {
-                    contagem.put(prod, contagem.get(prod) + 1);
-                }
-                else {
-                    contagem.put(prod, 1);
-                }
-            }}
+		for (Pedido pe : repositorio.getPedidos()) {
+			for (Produto prod : pe.getProdutos()) {
+				if (contagem.containsKey(prod)) {
+					contagem.put(prod, contagem.get(prod) + 1);
+				} else {
+					contagem.put(prod, 1);
+				}
+			}
+		}
 
-        Map<Produto, Integer> sortedNewMap = contagem.entrySet().stream()
-                .sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, 
-                        (e1, e2) -> e1, LinkedHashMap::new));
+		Map<Produto, Integer> sortedNewMap = contagem.entrySet().stream()
+				.sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
-        sortedNewMap.forEach((key, val) -> {
-            //System.out.println(key + " = " + val.toString());
-            res.add(key);
-        });
+		sortedNewMap.forEach((key, val) -> {
+			// System.out.println(key + " = " + val.toString());
+			res.add(key);
+		});
 
-        return res;
+		return res;
 
-    }
+	}
 }

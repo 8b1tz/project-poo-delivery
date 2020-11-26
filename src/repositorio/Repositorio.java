@@ -28,6 +28,14 @@ public class Repositorio {
 		}
 		return null;
 	}
+	
+	public Produto localizarProduto(int id) {
+		for (Produto pr : produtos) {
+			if (pr.getId() == id)
+				return pr;
+		}
+		return null;
+	}
 
 	public int getTotalProdutos() {
 		return produtos.size();
