@@ -1,7 +1,6 @@
 package fachada;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -32,11 +31,11 @@ public class Fachada {
 	}
 
 	public static Pedido getPedidoById(int idpedido) {
-		return repositorio.getPedido(idpedido);
+		return repositorio.localizarPedido(idpedido);
 	}
 
 	public static ArrayList<Pedido> listarPedidos(String tel, int tipo) {
-		return repositorio.getPedido(tel, tipo);
+		return repositorio.getPedidoByTel_Tipo(tel, tipo);
 	}
 
 	public static Produto cadastrarProduto(String nome, double preco) {
@@ -57,24 +56,22 @@ public class Fachada {
 		return cliente;
 	}
 
-	public static Pedido criarPedido(String telefone) {
-		idpedido++;
-		Cliente cli = null;
-		LocalDateTime agora = LocalDateTime.now();
-		ArrayList<Produto> prod = new ArrayList<>();
-		Pedido pedido;
-		for (Cliente c : repositorio.getClientes()) {
-			if (c.getTelefone() == telefone) {
-				cli = c;
-			}
-		}
-		if (cli != null) {
-			pedido = new Pedido(idpedido, agora, 0, null, false, cli, prod);
-			repositorio.adicionar(pedido);
-			return pedido;
-		}
-		return null;
-	}
+	public static Pedido criarPedido(String telefone) throws Exception {
+        idpedido++;
+        Cliente cli = null;
+        LocalDateTime agora = LocalDateTime.now();
+        ArrayList<Produto> prod = new ArrayList<>();
+        Pedido pedido;
+        cli = repositorio.localizarCliente(telefone);
+        if (cli != null) {
+            pedido = new Pedido(idpedido, agora, 0, null, false, cli, prod);
+            repositorio.adicionar(pedido);
+            return pedido;
+        }
+        else {
+            throw new Exception("Cliente NULL");
+        }
+    }
 
 	public static Pedido criarPedido(String telefone, double taxaentrega) {
         idpedido++;
@@ -125,7 +122,7 @@ public class Fachada {
 
 	public static Pedido consultarPedido(int idpedido) {
 		Pedido res;
-		res = repositorio.getPedido(idpedido);
+		res = repositorio.localizarPedido(idpedido);
 		if (res != null) {
 			return res;
 		}

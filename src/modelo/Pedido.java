@@ -63,14 +63,6 @@ public class Pedido {
 		return this.produtos;
 	}
 
-	public Produto getProdutoById(int idproduto) {
-		for (Produto p : this.produtos) {
-			if (p.getId() == idproduto) {
-				return p;
-			}
-		}
-		return null;
-	}
 
 	public void setProdutos(ArrayList<Produto> produtos) {
 		this.produtos = produtos;
