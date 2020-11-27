@@ -1,6 +1,8 @@
 package fachada;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -29,6 +31,10 @@ public class Fachada {
 	public static ArrayList<Pedido> listarPedidos() {
 		return repositorio.getPedidos();
 	}
+	
+	public static ArrayList<Pedido> listarPedidos(String tel, int tipo) {
+		return repositorio.getPedidoByTel_Tipo(tel, tipo);
+	}
 
 	public static Pedido getPedidoById(int idpedido)  throws Exception {
 		if (repositorio.localizarPedido(idpedido) != null) {
@@ -38,9 +44,6 @@ public class Fachada {
 		}
 	}
 
-	public static ArrayList<Pedido> listarPedidos(String tel, int tipo) {
-		return repositorio.getPedidoByTel_Tipo(tel, tipo);
-	}
 
 	public static Produto cadastrarProduto(String nome, double preco)  throws Exception {
 		idproduto++;
@@ -181,10 +184,10 @@ public class Fachada {
 
 	}
 
-	public static double consultarArrecadacao(LocalDateTime dia) {
+	public static double consultarArrecadacao(Integer dia) {
 		double total = 0;
 		for (Pedido p : repositorio.getPedidos()) {
-			if (p.isPago() == true & p.getDatahora() == dia) {
+			if (p.isPago() == true &  p.getDatahora().getDayOfMonth() == dia ) {
 				total = total + p.getValortotal();
 			}
 		}
@@ -210,7 +213,7 @@ public class Fachada {
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
 		sortedNewMap.forEach((key, val) -> {
-			// System.out.println(key + " = " + val.toString());
+			//System.out.println(key + " = " + val.toString());
 			res.add(key);
 		});
 

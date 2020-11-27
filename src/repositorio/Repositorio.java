@@ -9,7 +9,6 @@ import modelo.Cliente;
 public class Repositorio {
 	private ArrayList<Produto> produtos = new ArrayList<>();
 	private ArrayList<Pedido> pedidos = new ArrayList<>();
-	private ArrayList<Pedido> pedidosByTipo = new ArrayList<>();
 	private ArrayList<Cliente> clientes = new ArrayList<>();
 
 	/* Produto */
@@ -90,7 +89,7 @@ public class Repositorio {
 	}
 
 	public ArrayList<Pedido> getPedidoByTel_Tipo(String tel, int tipo) {
-		pedidosByTipo.clear();
+		ArrayList<Pedido> pedidosByTipo = new ArrayList<>();
 		for (Pedido p : pedidos) {
 			if (p.getCliente().getTelefone() == tel) {
 				if (tipo == 1 && p.isPago() == true) {
