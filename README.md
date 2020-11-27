@@ -1,4 +1,4 @@
-# Projeto POO Delivery, faltam ( 7 ) dias !!
+# Projeto POO Delivery, faltam ( 4 ) dias !!
 
 <h2>Faltam ( 3 ) atividades !</h2>
 
