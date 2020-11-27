@@ -175,11 +175,9 @@ public class Fachada {
 				pr.getPedidos().remove(res);
 			}
 		}
-		for (Cliente cl : repositorio.getClientes()) {
-			if (cl.getPedidos().contains(res)) {
-				cl.getPedidos().remove(res);
-			}
-		}
+
+		res.getCliente().getPedidos().remove(res);
+		
 		repositorio.remover(res);
 
 	}

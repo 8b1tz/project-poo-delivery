@@ -41,6 +41,7 @@ public class Programa {
 			Fachada.adicionarProdutoPedido(2, 5);
 			Fachada.adicionarProdutoPedido(2, 4);
 			Fachada.adicionarProdutoPedido(3, 3);
+			Fachada.adicionarProdutoPedido(3, 5);
 			Fachada.adicionarProdutoPedido(4, 2);
 			Fachada.adicionarProdutoPedido(4, 3);
 			Fachada.adicionarProdutoPedido(4, 5);
