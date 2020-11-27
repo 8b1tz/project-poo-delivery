@@ -1,13 +1,12 @@
 package fachada;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.Map.Entry;
 
 import modelo.Cliente;
 import modelo.Pedido;
@@ -110,13 +109,17 @@ public class Fachada {
 		pe = repositorio.localizarPedido(idpedido);
 		pr = repositorio.localizarProduto(idproduto);
 		if (pe != null) {
-			if (pr != null) {
-					pe.addProduto(pr);
-					pr.addPedido(pe);
-					pe.getCliente().addPedido(pe);
-			}else {
-					throw new Exception("Produto com esse id não existe");
-					}
+			if (pe.isPago() == true){
+				throw new Exception("Pedido já foi pago");
+				}
+			else if (pr != null) {
+						pe.addProduto(pr);
+						pr.addPedido(pe);
+						pe.getCliente().addPedido(pe);
+						pe.setValortotal(pe.geraValortotal());
+				}else {
+						throw new Exception("Produto com esse id não existe");
+						}
 		}else {
 			throw new Exception("Pedido com esse id não existe");
 				}
@@ -128,10 +131,14 @@ public class Fachada {
 		pe = repositorio.localizarPedido(idpedido);
 		pr = repositorio.localizarProduto(idproduto);
 		if (pe != null) {
-			if (pr != null) {
+			if (pe.isPago() == true){
+				throw new Exception("Pedido já foi pago");
+			}
+			else if (pr != null) {
 				if (pe.getProdutosIds().contains(idproduto)) {
 					pe.remProduto(pr);
 					pr.remPedido(pe);
+					pe.setValortotal(pe.geraValortotal());
 				}else {
 					throw new Exception("Produto com esse id não existe dentro desse Pedido");
 					}
@@ -158,6 +165,8 @@ public class Fachada {
 		res = repositorio.localizarPedido(idpedido);
 		if (res == null) {
 			throw new Exception("Não existe esse pedido");
+		}else if (res.isPago() == true){
+			throw new Exception("Pedido já foi pago");
 		}
 		res.setEntregador(nomeentregador);
 		res.setPago(true);
@@ -169,6 +178,8 @@ public class Fachada {
 		res = repositorio.localizarPedido(idpedido);
 		if (res == null) {
 			throw new Exception("Não existe esse pedido!");
+		}else if (res.isPago() == true){
+			throw new Exception("Pedido já foi pago");
 		}
 		for (Produto pr : repositorio.getProdutos("")) {
 			if (pr.getPedidos().contains(res)) {
@@ -193,29 +204,29 @@ public class Fachada {
 	}
 
 	public static ArrayList<Produto> consultarProdutoTop() {
-		ArrayList<Produto> res = new ArrayList<>();
-		HashMap<Produto, Integer> contagem = new HashMap<>();
+        ArrayList<Produto> res = new ArrayList<>();
+        HashMap<Produto, Integer> contagem = new HashMap<>();
+        int max = 0;
+        for (Pedido pe : repositorio.getPedidos()) {
+            for (Produto prod : pe.getProdutos()) {
+                if (contagem.containsKey(prod)) {
+                    contagem.put(prod, contagem.get(prod) + 1);
 
-		for (Pedido pe : repositorio.getPedidos()) {
-			for (Produto prod : pe.getProdutos()) {
-				if (contagem.containsKey(prod)) {
-					contagem.put(prod, contagem.get(prod) + 1);
-				} else {
-					contagem.put(prod, 1);
-				}
-			}
-		}
+                } else {
+                    contagem.put(prod, 1);
+                }
+                if (contagem.get(prod) > max) {
+                    max = contagem.get(prod);
+                }
+            }
+        }
+        for (Entry<Produto, Integer> entry : contagem.entrySet()) {
+            if (entry.getValue() >= max) {
+                res.add(entry.getKey());
+            }
+        }
 
-		Map<Produto, Integer> sortedNewMap = contagem.entrySet().stream()
-				.sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+        return res;
 
-		sortedNewMap.forEach((key, val) -> {
-			//System.out.println(key + " = " + val.toString());
-			res.add(key);
-		});
-
-		return res;
-
-	}
+    }
 }

@@ -10,61 +10,55 @@ import modelo.Pedido;
 public class Programa {
 		public static void main(String[] args) throws Exception {
 			String texto;
-			String textoexc;
 			try {
+			// Adicionando produtos 
 			Fachada.cadastrarProduto("TV", 2000.0);
 			Fachada.cadastrarProduto("NOTEBOOK", 3000.0);
 			Fachada.cadastrarProduto("PS4", 2000.0);
 			Fachada.cadastrarProduto("TABLET", 3500.0);
 			Fachada.cadastrarProduto("CELULAR", 2500.0);
 			
-			Fachada.cadastrarCliente("982828282", "Ana Julia", "Brasil"); //express
-			Fachada.cadastrarCliente("982845454", "Yohanna", "Japao");
-			Fachada.cadastrarCliente("982867762", "Amanda", "Canada");
-			Fachada.cadastrarCliente("982989898", "Maria", "Noruega");
-			Fachada.cadastrarCliente("983434343", "Fatima", "Alemanha");
+			// Adicionando clientes
+			Fachada.cadastrarCliente("982000000", "Ana Julia", "Brasil"); //express
+			Fachada.cadastrarCliente("982111111", "Yohanna", "Japao");
+			Fachada.cadastrarCliente("982222222", "Amanda", "Canada");
+			Fachada.cadastrarCliente("983333333", "Maria", "Noruega");
+			Fachada.cadastrarCliente("984444444", "Fatima", "Alemanha");
 			
-			Fachada.criarPedido("982845454");
-			Fachada.criarPedido("982867762");
-			Fachada.criarPedido("982989898");
-			Fachada.criarPedido("983434343");
-			Fachada.criarPedido("982989898");
-			Fachada.criarPedido("983434343");
-			Fachada.criarPedido("982828282", 10.0); //express
+			// Adicionando pedidos
+			Fachada.criarPedido("982000000");
+			Fachada.criarPedido("982111111");
+			Fachada.criarPedido("982222222");
+			Fachada.criarPedido("983333333");
+			Fachada.criarPedido("982000000", 10.0); //express
 			
-			// Adicionando produtos nos pedidos
-			
+			// Adicionando e removendo produtos dos pedidos
 			Fachada.adicionarProdutoPedido(1, 1);
 			Fachada.adicionarProdutoPedido(1, 3);
 			Fachada.adicionarProdutoPedido(1, 4);
 			Fachada.adicionarProdutoPedido(1, 3);
+			
 			Fachada.adicionarProdutoPedido(2, 5);
-			Fachada.adicionarProdutoPedido(2, 4);
+			Fachada.adicionarProdutoPedido(2, 2);
+			
 			Fachada.adicionarProdutoPedido(3, 3);
 			Fachada.adicionarProdutoPedido(3, 5);
+			
 			Fachada.adicionarProdutoPedido(4, 2);
 			Fachada.adicionarProdutoPedido(4, 3);
 			Fachada.adicionarProdutoPedido(4, 5);
+			Fachada.removerProdutoPedido(4, 3);
 			Fachada.adicionarProdutoPedido(4, 2);
+			
 			Fachada.adicionarProdutoPedido(5, 3);
 			Fachada.adicionarProdutoPedido(5, 5);
-			Fachada.adicionarProdutoPedido(5, 5);
-			Fachada.adicionarProdutoPedido(6, 5);
-			Fachada.adicionarProdutoPedido(6, 5);
-			Fachada.adicionarProdutoPedido(7, 3);
-			Fachada.adicionarProdutoPedido(7, 2);
-			
+			Fachada.removerProdutoPedido(5, 3);
 			
 			// Pagando entregadores para pedido 1 e 2 e cancelando o 3
-
 			Fachada.pagarPedido(1,"Joao");
 			Fachada.pagarPedido(2,"Jose");
 			Fachada.cancelarPedido(3);
-			//isso aqui a gente tem q alterar dinamicamente !
-			Fachada.getPedidoById(1).setValortotal(Fachada.getPedidoById(1).geraValortotal());
-			Fachada.getPedidoById(2).setValortotal(Fachada.getPedidoById(2).geraValortotal());;
-			Fachada.getPedidoById(4).setValortotal(Fachada.getPedidoById(4).geraValortotal());;
-			Fachada.getPedidoById(5).setValortotal(Fachada.getPedidoById(5).geraValortotal());;
+			
 			}catch (Exception e){
 				System.out.println(e.getMessage());
 				
@@ -103,8 +97,7 @@ public class Programa {
 
 			System.out.println(texto);
 			
-			textoexc = "\n Teste de Excecoes: \n";
-			System.out.println(textoexc);
+			System.out.println("\n Teste de Excecoes: \n");
 			try {
 				Fachada.cadastrarProduto("CELULAR", 2500.0);
 			}catch (Exception e){
@@ -112,13 +105,14 @@ public class Programa {
 				
 			}
 			try {
-				Fachada.cadastrarCliente("983434343", "Fatima", "Alemanha");
+				Fachada.cadastrarCliente("984444444", "Fatima", "Alemanha");
 			}catch (Exception e){
 				System.out.println(e.getMessage());
 				
 			}
 			try {
-				Fachada.adicionarProdutoPedido(7, 20);
+				Fachada.adicionarProdutoPedido(7, 2);
+				Fachada.adicionarProdutoPedido(7, 2);
 			}catch (Exception e){
 				System.out.println(e.getMessage());
 				
