@@ -3,9 +3,6 @@ package fachada;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.Map.Entry;
 
 import modelo.Cliente;
@@ -39,7 +36,7 @@ public class Fachada {
 		if (repositorio.localizarPedido(idpedido) != null) {
 			return repositorio.localizarPedido(idpedido);
 		}else {
-			throw new Exception("Id do pedido n„o encontrado");
+			throw new Exception("Id do pedido n√£o encontrado");
 		}
 	}
 
@@ -54,7 +51,7 @@ public class Fachada {
 			repositorio.adicionar(produto);
 			return produto;
 		}else {
-			throw new Exception("Produto com esse exato nome j· existe");
+			throw new Exception("Produto com esse exato nome j√° existe");
 		}
 	}
 
@@ -66,7 +63,7 @@ public class Fachada {
 			repositorio.adicionar(cliente);
 			return cliente;
 		}else {
-			throw new Exception("Cliente com esse telefone j· existe");
+			throw new Exception("Cliente com esse telefone j√° existe");
 		}
 	}
 
@@ -83,7 +80,7 @@ public class Fachada {
             return pedido;
         }
         else {
-            throw new Exception("Cliente n„o existe");
+            throw new Exception("Cliente n√£o existe");
         }
     }
 
@@ -100,7 +97,7 @@ public class Fachada {
             repositorio.adicionar(pedido);
             return pedido;
             }
-        throw new Exception("Cliente n„o existe");
+        throw new Exception("Cliente n√£o existe");
 	}
 	
 	public static void adicionarProdutoPedido(int idpedido, int idproduto) throws Exception {
@@ -110,7 +107,7 @@ public class Fachada {
 		pr = repositorio.localizarProduto(idproduto);
 		if (pe != null) {
 			if (pe.isPago() == true){
-				throw new Exception("Pedido j· foi pago");
+				throw new Exception("Pedido j√° foi pago");
 				}
 			else if (pr != null) {
 						pe.addProduto(pr);
@@ -118,10 +115,10 @@ public class Fachada {
 						pe.getCliente().addPedido(pe);
 						pe.setValortotal(pe.geraValortotal());
 				}else {
-						throw new Exception("Produto com esse id n„o existe");
+						throw new Exception("Produto com esse id n√£o existe");
 						}
 		}else {
-			throw new Exception("Pedido com esse id n„o existe");
+			throw new Exception("Pedido com esse id n√£o existe");
 				}
 			}
 
@@ -132,7 +129,7 @@ public class Fachada {
 		pr = repositorio.localizarProduto(idproduto);
 		if (pe != null) {
 			if (pe.isPago() == true){
-				throw new Exception("Pedido j· foi pago");
+				throw new Exception("Pedido j√° foi pago");
 			}
 			else if (pr != null) {
 				if (pe.getProdutosIds().contains(idproduto)) {
@@ -140,13 +137,13 @@ public class Fachada {
 					pr.remPedido(pe);
 					pe.setValortotal(pe.geraValortotal());
 				}else {
-					throw new Exception("Produto com esse id n„o existe dentro desse Pedido");
+					throw new Exception("Produto com esse id n√£o existe dentro desse Pedido");
 					}
 			}else {
-					throw new Exception("Produto com esse id n„o existe");
+					throw new Exception("Produto com esse id n√£o existe");
 					}
 		}else {
-			throw new Exception("Pedido com esse id n„o existe");
+			throw new Exception("Pedido com esse id n√£o existe");
 				}
 			}
 
@@ -156,7 +153,7 @@ public class Fachada {
 		if (res != null) {
 			return res;
 		} else {
-			throw new Exception("N„o existe esse pedido");
+			throw new Exception("N√£o existe esse pedido");
 		}
 	}
 
@@ -164,9 +161,9 @@ public class Fachada {
 		Pedido res;
 		res = repositorio.localizarPedido(idpedido);
 		if (res == null) {
-			throw new Exception("N„o existe esse pedido");
+			throw new Exception("N√£o existe esse pedido");
 		}else if (res.isPago() == true){
-			throw new Exception("Pedido j· foi pago");
+			throw new Exception("Pedido j√° foi pago");
 		}
 		res.setEntregador(nomeentregador);
 		res.setPago(true);
@@ -177,9 +174,9 @@ public class Fachada {
 		Pedido res;
 		res = repositorio.localizarPedido(idpedido);
 		if (res == null) {
-			throw new Exception("N„o existe esse pedido!");
+			throw new Exception("N√£o existe esse pedido!");
 		}else if (res.isPago() == true){
-			throw new Exception("Pedido j· foi pago");
+			throw new Exception("Pedido j√° foi pago");
 		}
 		for (Produto pr : repositorio.getProdutos("")) {
 			if (pr.getPedidos().contains(res)) {
