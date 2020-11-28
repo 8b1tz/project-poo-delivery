@@ -1,14 +1,18 @@
-package aplicacao;
+package aplicacao_swing;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.JTextField;
-import javax.swing.JButton;
 
-public class JanelaAlterar extends JFrame{
+import fachada.Fachada;
+
+public class TelaAlteracao extends JFrame{
 
 	/**
 	 * 
@@ -25,7 +29,7 @@ public class JanelaAlterar extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JanelaAlterar window = new JanelaAlterar();
+					TelaAlteracao window = new TelaAlteracao();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +41,7 @@ public class JanelaAlterar extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public JanelaAlterar() {
+	public TelaAlteracao() {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Alterar");
@@ -68,6 +72,17 @@ public class JanelaAlterar extends JFrame{
 		getContentPane().add(idproduto);
 		
 		JButton btnNewButton = new JButton("Inserir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Fachada.adicionarProdutoPedido(Integer.parseInt(idpedido.getText()),Integer.parseInt(idproduto.getText()));
+					
+				} catch (Exception e1) {
+					
+				}
+				
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton.setBounds(40, 174, 109, 26);
 		getContentPane().add(btnNewButton);
@@ -76,6 +91,11 @@ public class JanelaAlterar extends JFrame{
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnRemover.setBounds(168, 174, 113, 26);
 		getContentPane().add(btnRemover);
+		
+		JLabel exceplb = new JLabel("");
+		exceplb.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		exceplb.setBounds(40, 210, 330, 26);
+		getContentPane().add(exceplb);
 		initialize();
 	}
 
@@ -87,5 +107,4 @@ public class JanelaAlterar extends JFrame{
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
 }

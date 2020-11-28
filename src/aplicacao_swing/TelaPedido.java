@@ -1,4 +1,4 @@
-package aplicacao;
+package aplicacao_swing;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class NovaJanelaPedido extends JFrame{
+public class TelaPedido extends JFrame{
 
 	/**
 	 * 
@@ -24,7 +24,7 @@ public class NovaJanelaPedido extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NovaJanelaPedido window = new NovaJanelaPedido();
+					TelaPedido window = new TelaPedido();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,14 +36,14 @@ public class NovaJanelaPedido extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public NovaJanelaPedido() {
+	public TelaPedido() {
 		getContentPane().setLayout(null);
 		
 		JButton btnNewButton = new JButton("Criar");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JanelaCriar innerFrame = new JanelaCriar();
+				TelaCriacao innerFrame = new TelaCriacao();
 				innerFrame.setBounds(100, 100, 450, 300);
 		        innerFrame.setVisible(true);
 			}
@@ -54,7 +54,7 @@ public class NovaJanelaPedido extends JFrame{
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JanelaAlterar innerFrame = new JanelaAlterar();
+				TelaAlteracao innerFrame = new TelaAlteracao();
 				innerFrame.setBounds(100, 100, 450, 300);
 		        innerFrame.setVisible(true);
 			}
@@ -66,7 +66,7 @@ public class NovaJanelaPedido extends JFrame{
 		JButton btnNewButton_1_1 = new JButton("Pagar");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JanelaPagar innerFrame = new JanelaPagar();
+				TelaPagamento innerFrame = new TelaPagamento();
 				innerFrame.setBounds(100, 100, 450, 300);
 		        innerFrame.setVisible(true);
 			}
@@ -83,7 +83,7 @@ public class NovaJanelaPedido extends JFrame{
 		JButton btnNewButton_1_1_1 = new JButton("Cancelar");
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JanelaCancelamento innerFrame = new JanelaCancelamento();
+				TelaCancelamento innerFrame = new TelaCancelamento();
 				innerFrame.setBounds(100, 100, 450, 300);
 		        innerFrame.setVisible(true);
 			}

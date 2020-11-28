@@ -1,4 +1,4 @@
-package aplicacao;
+package aplicacao_swing;
 
 import java.awt.EventQueue;
 
@@ -8,7 +8,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class JanelaPagar extends JFrame{
+public class TelaCancelamento extends JFrame{
 
 	/**
 	 * 
@@ -16,7 +16,6 @@ public class JanelaPagar extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private JTextField idpedido;
-	private JTextField entregador;
 
 	/**
 	 * Launch the application.
@@ -25,7 +24,7 @@ public class JanelaPagar extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JanelaPagar window = new JanelaPagar();
+					TelaCancelamento window = new TelaCancelamento();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,39 +36,28 @@ public class JanelaPagar extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public JanelaPagar() {
+	public TelaCancelamento() {
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Pagamento");
+		JLabel lblNewLabel = new JLabel("Cancelamento");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblNewLabel.setBounds(126, 10, 154, 50);
+		lblNewLabel.setBounds(108, 10, 213, 39);
 		getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Id Pedido:");
+		JLabel lblNewLabel_1 = new JLabel("id pedido:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(102, 78, 105, 25);
+		lblNewLabel_1.setBounds(53, 115, 106, 25);
 		getContentPane().add(lblNewLabel_1);
 		
 		idpedido = new JTextField();
 		idpedido.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		idpedido.setBounds(217, 81, 132, 19);
+		idpedido.setBounds(185, 115, 133, 25);
 		getContentPane().add(idpedido);
 		idpedido.setColumns(10);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Nome do entregador:");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1_1.setBounds(10, 135, 197, 25);
-		getContentPane().add(lblNewLabel_1_1);
-		
-		entregador = new JTextField();
-		entregador.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		entregador.setColumns(10);
-		entregador.setBounds(217, 142, 132, 19);
-		getContentPane().add(entregador);
-		
-		JButton btnNewButton = new JButton("Pagar");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(260, 202, 88, 33);
+		JButton btnNewButton = new JButton("Cancelar");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnNewButton.setBounds(282, 187, 106, 25);
 		getContentPane().add(btnNewButton);
 		initialize();
 	}
