@@ -1,4 +1,4 @@
-package aplicacao;
+package aplicacao_swing;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 
-public class Swing extends JFrame {
+public class TelaPrincipal extends JFrame {
 
 	/**
 	 * 
@@ -24,7 +24,7 @@ public class Swing extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Swing window = new Swing();
+					TelaPrincipal window = new TelaPrincipal();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class Swing extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public Swing() {
+	public TelaPrincipal() {
 		initialize();
 	}
 
@@ -54,7 +54,7 @@ public class Swing extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NovaJanelaPedido innerFrame = new NovaJanelaPedido();
+				TelaPedido innerFrame = new TelaPedido();
 				innerFrame.setBounds(100, 100, 450, 300);
 		        innerFrame.setVisible(true);
 			}
@@ -65,7 +65,7 @@ public class Swing extends JFrame {
 		btnListagem.setBounds(126, 149, 152, 40);
 		btnListagem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NovaJanelaListagem innerFrame = new NovaJanelaListagem();
+				TelaListagem innerFrame = new TelaListagem();
 				innerFrame.setBounds(100, 100, 450, 700);
 		        innerFrame.setVisible(true);
 			}

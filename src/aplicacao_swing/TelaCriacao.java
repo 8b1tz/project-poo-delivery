@@ -1,4 +1,4 @@
-package aplicacao;
+package aplicacao_swing;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class JanelaCriar extends JFrame{
+public class TelaCriacao extends JFrame{
 
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class JanelaCriar extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JanelaCriar window = new JanelaCriar();
+					TelaCriacao window = new TelaCriacao();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class JanelaCriar extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public JanelaCriar() {
+	public TelaCriacao() {
 		getContentPane().setLayout(null);
 		
 		JLabel lblCriao = new JLabel("Cria\u00E7\u00E3o");

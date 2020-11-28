@@ -1,4 +1,4 @@
-package aplicacao;
+package aplicacao_swing;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class NovaJanelaListagem extends JFrame{
+public class TelaListagem extends JFrame{
 
 	/**
 	 * 
@@ -24,7 +24,7 @@ public class NovaJanelaListagem extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NovaJanelaListagem window = new NovaJanelaListagem();
+					TelaListagem window = new TelaListagem();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class NovaJanelaListagem extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public NovaJanelaListagem() {
+	public TelaListagem() {
 		getContentPane().setLayout(null);
 		
 		JLabel lblListagem = new JLabel("Listagem");
