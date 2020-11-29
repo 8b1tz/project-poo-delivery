@@ -86,7 +86,9 @@ public class TelaCriacao {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel_2.setBounds(26, 215, 373, 38);
 		frmCriao.getContentPane().add(lblNewLabel_2);
-
+		if (rdbtnPedidoExpress.isSelected() == true) {
+			lblNewLabel_2.setText("Não pode marcar os dois ao mesmo tempoo!");
+		}
 		JButton btnNewButton = new JButton("Criar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -110,7 +112,9 @@ public class TelaCriacao {
 					lblNewLabel_2.setText("Não pode marcar 2 tipos ao mesmo tempo!");
 				}
 			}
+
 		});
+
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.setBounds(314, 176, 85, 21);
 		frmCriao.getContentPane().add(btnNewButton);
@@ -123,6 +127,7 @@ public class TelaCriacao {
 
 	public void setFrame(JFrame frame) {
 		this.frmCriao = frame;
+		frmCriao.setResizable(false);
 		frmCriao.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCriacao.class.getResource("/imagem/icon.png")));
 		frmCriao.setTitle("Cria\u00E7\u00E3o");
 	}

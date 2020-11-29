@@ -55,6 +55,7 @@ public class TelaPagamento {
 	 */
 	private void initialize() {
 		frmPagamento = new JFrame();
+		frmPagamento.setResizable(false);
 		frmPagamento.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaPagamento.class.getResource("/imagem/icon.png")));
 		frmPagamento.setTitle("Pagamento");
@@ -86,7 +87,7 @@ public class TelaPagamento {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Fachada.pagarPedido(Integer.parseInt(idpedido.getText()), entregador.getText().toString());
-					lblNewLabel_2.setText("Pago com sucesso o pedido: " + idpedido + " do entregador " + entregador);
+					lblNewLabel_2.setText("Pago com sucesso o pedido: " + idpedido.getText() + " do entregador " + entregador.getText());
 				} catch (Exception e1) {
 					lblNewLabel_2.setText(e1.getMessage());
 				}
