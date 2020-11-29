@@ -106,7 +106,7 @@ public class TelaCriacao {
 						lblNewLabel_2.setText(e1.getMessage());
 					}
 				}
-				else {
+				if (rdbtnPedidoExpress.isSelected() == true && rdbtnNewRadioButton.isSelected() == true) {
 					lblNewLabel_2.setText("Não pode marcar 2 tipos ao mesmo tempo!");
 				}
 			}
