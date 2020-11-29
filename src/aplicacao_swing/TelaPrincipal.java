@@ -11,7 +11,7 @@ import javax.swing.JMenuItem;
 
 public class TelaPrincipal {
 
-	private JFrame frame;
+	private JFrame frmMenu;
 
 	/**
 	 * Launch the application.
@@ -21,7 +21,7 @@ public class TelaPrincipal {
 			public void run() {
 				try {
 					TelaPrincipal window = new TelaPrincipal();
-					window.frame.setVisible(true);
+					window.frmMenu.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,12 +40,13 @@ public class TelaPrincipal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmMenu = new JFrame();
+		frmMenu.setTitle("Menu ");
+		frmMenu.setBounds(100, 100, 450, 300);
+		frmMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
+		frmMenu.setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Pedido");
 		menuBar.add(mnNewMenu);

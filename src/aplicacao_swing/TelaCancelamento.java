@@ -6,7 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import fachada.Fachada;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaCancelamento {
 
@@ -45,26 +50,41 @@ public class TelaCancelamento {
 		frmCancelamento.setBounds(100, 100, 450, 300);
 		frmCancelamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCancelamento.getContentPane().setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Cancelamento");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblNewLabel.setBounds(102, 0, 228, 43);
 		frmCancelamento.getContentPane().add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("idpedido:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(60, 116, 106, 28);
 		frmCancelamento.getContentPane().add(lblNewLabel_1);
-		
+
 		idpedido = new JTextField();
 		idpedido.setBounds(175, 124, 118, 19);
 		frmCancelamento.getContentPane().add(idpedido);
 		idpedido.setColumns(10);
-		
+
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_2.setBounds(22, 227, 343, 26);
+		frmCancelamento.getContentPane().add(lblNewLabel_2);
 		JButton btnNewButton = new JButton("Cancelar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Fachada.cancelarPedido(Integer.parseInt(idpedido.getText()));
+					lblNewLabel_2.setText("Pedido: "+idpedido+ " cancelado!");
+				} catch (Exception e1) {
+					lblNewLabel_2.setText(e1.getMessage());
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(264, 189, 103, 21);
+		btnNewButton.setBounds(264, 182, 112, 28);
 		frmCancelamento.getContentPane().add(btnNewButton);
+
 	}
 
 	public JFrame getFrmCancelamento() {
