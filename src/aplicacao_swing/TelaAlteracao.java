@@ -47,6 +47,7 @@ public class TelaAlteracao {
 	 */
 	private void initialize() {
 		frmAlterao = new JFrame();
+		frmAlterao.setResizable(false);
 		frmAlterao.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaAlteracao.class.getResource("/imagem/icon.png")));
 		frmAlterao.setTitle("Altera\u00E7\u00E3o");

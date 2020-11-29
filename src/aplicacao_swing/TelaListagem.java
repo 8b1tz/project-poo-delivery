@@ -53,6 +53,7 @@ public class TelaListagem {
 	 */
 	private void initialize() {
 		frmListagem = new JFrame();
+		frmListagem.setResizable(false);
 		frmListagem
 				.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaListagem.class.getResource("/imagem/icon.png")));
 		frmListagem.setTitle("Listagem");

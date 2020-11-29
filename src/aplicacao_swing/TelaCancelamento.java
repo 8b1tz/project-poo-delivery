@@ -46,6 +46,7 @@ public class TelaCancelamento {
 	 */
 	private void initialize() {
 		frmCancelamento = new JFrame();
+		frmCancelamento.setResizable(false);
 		frmCancelamento.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaCancelamento.class.getResource("/imagem/icon.png")));
 		frmCancelamento.setTitle("Cancelamento");

@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import java.awt.Color;
 
 public class TelaPrincipal {
 
@@ -47,9 +48,10 @@ public class TelaPrincipal {
 	 */
 	private void initialize() {
 		frmMenu = new JFrame();
+		frmMenu.setResizable(false);
 		frmMenu.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaPrincipal.class.getResource("/imagem/icon.png")));
 		frmMenu.setTitle("Menu ");
-		frmMenu.setBounds(100, 100, 450, 300);
+		frmMenu.setBounds(100, 100, 425, 276);
 		frmMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JMenuBar menuBar = new JMenuBar();
 		frmMenu.setJMenuBar(menuBar);
@@ -98,6 +100,7 @@ public class TelaPrincipal {
 		mnNewMenu.add(mntmNewMenuItem_3);
 		
 		JMenu mnNewMenu_1 = new JMenu("Listagem");
+		mnNewMenu_1.setBackground(Color.RED);
 		mnNewMenu_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -108,10 +111,9 @@ public class TelaPrincipal {
 		menuBar.add(mnNewMenu_1);
 		frmMenu.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagem/if.png")));
-		lblNewLabel.setBounds(0, 0, 436, 241);
+		lblNewLabel.setBounds(0, -22, 411, 239);
 		frmMenu.getContentPane().add(lblNewLabel);
 	}
-
 }
