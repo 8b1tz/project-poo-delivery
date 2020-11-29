@@ -1,20 +1,16 @@
 package aplicacao_swing;
 
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
+public class TelaPrincipal {
 
-public class TelaPrincipal extends JFrame {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 
 	/**
@@ -44,36 +40,58 @@ public class TelaPrincipal extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		JButton btnNewButton = new JButton("Pedido");
-		btnNewButton.setBounds(126, 66, 152, 40);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaPedido innerFrame = new TelaPedido();
-				innerFrame.setBounds(100, 100, 450, 300);
-		        innerFrame.setVisible(true);
-			}
-
-		});
-
-		JButton btnListagem = new JButton("Listagem");
-		btnListagem.setBounds(126, 149, 152, 40);
-		btnListagem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaListagem innerFrame = new TelaListagem();
-				innerFrame.setBounds(100, 100, 450, 700);
-		        innerFrame.setVisible(true);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Pedido");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Criar");
+		mntmNewMenuItem.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				TelaCriacao window = new TelaCriacao();
+				window.getFrame().setVisible(true);
 			}
 		});
-		btnListagem.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(btnNewButton);
-		frame.getContentPane().add(btnListagem);
+		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Alterar");
+		mntmNewMenuItem_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				TelaAlteracao window = new TelaAlteracao();
+				window.getFrame().setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Pagamento");
+		mntmNewMenuItem_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				TelaPagamento window = new TelaPagamento();
+				window.getFrame().setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_2);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Cancelamento");
+		mntmNewMenuItem_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				TelaCancelamento window = new TelaCancelamento();
+				window.getFrmCancelamento().setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_3);
+		
+		JMenu mnNewMenu_1 = new JMenu("Listagem");
+		menuBar.add(mnNewMenu_1);
 	}
 
 }

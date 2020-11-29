@@ -8,13 +8,9 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class TelaCancelamento extends JFrame{
+public class TelaCancelamento {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JFrame frame;
+	private JFrame frmCancelamento;
 	private JTextField idpedido;
 
 	/**
@@ -25,7 +21,7 @@ public class TelaCancelamento extends JFrame{
 			public void run() {
 				try {
 					TelaCancelamento window = new TelaCancelamento();
-					window.frame.setVisible(true);
+					window.frmCancelamento.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -37,28 +33,6 @@ public class TelaCancelamento extends JFrame{
 	 * Create the application.
 	 */
 	public TelaCancelamento() {
-		getContentPane().setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Cancelamento");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblNewLabel.setBounds(108, 10, 213, 39);
-		getContentPane().add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("id pedido:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(53, 115, 106, 25);
-		getContentPane().add(lblNewLabel_1);
-		
-		idpedido = new JTextField();
-		idpedido.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		idpedido.setBounds(185, 115, 133, 25);
-		getContentPane().add(idpedido);
-		idpedido.setColumns(10);
-		
-		JButton btnNewButton = new JButton("Cancelar");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnNewButton.setBounds(282, 187, 106, 25);
-		getContentPane().add(btnNewButton);
 		initialize();
 	}
 
@@ -66,9 +40,39 @@ public class TelaCancelamento extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCancelamento = new JFrame();
+		frmCancelamento.setTitle("Cancelamento");
+		frmCancelamento.setBounds(100, 100, 450, 300);
+		frmCancelamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCancelamento.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Cancelamento");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNewLabel.setBounds(102, 0, 228, 43);
+		frmCancelamento.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("idpedido:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_1.setBounds(60, 116, 106, 28);
+		frmCancelamento.getContentPane().add(lblNewLabel_1);
+		
+		idpedido = new JTextField();
+		idpedido.setBounds(175, 124, 118, 19);
+		frmCancelamento.getContentPane().add(idpedido);
+		idpedido.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Cancelar");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton.setBounds(264, 189, 103, 21);
+		frmCancelamento.getContentPane().add(btnNewButton);
+	}
+
+	public JFrame getFrmCancelamento() {
+		return frmCancelamento;
+	}
+
+	public void setFrmCancelamento(JFrame frmCancelamento) {
+		this.frmCancelamento = frmCancelamento;
 	}
 
 }

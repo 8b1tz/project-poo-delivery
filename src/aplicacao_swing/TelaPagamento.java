@@ -8,13 +8,9 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class TelaPagamento extends JFrame{
+public class TelaPagamento {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JFrame frame;
+	private JFrame frmPagamento;
 	private JTextField idpedido;
 	private JTextField entregador;
 
@@ -26,7 +22,7 @@ public class TelaPagamento extends JFrame{
 			public void run() {
 				try {
 					TelaPagamento window = new TelaPagamento();
-					window.frame.setVisible(true);
+					window.frmPagamento.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -34,43 +30,18 @@ public class TelaPagamento extends JFrame{
 		});
 	}
 
+	public JFrame getFrame() {
+		return frmPagamento;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frmPagamento = frame;
+	}
+
 	/**
 	 * Create the application.
 	 */
 	public TelaPagamento() {
-		getContentPane().setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Pagamento");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblNewLabel.setBounds(126, 10, 154, 50);
-		getContentPane().add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Id Pedido:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(102, 78, 105, 25);
-		getContentPane().add(lblNewLabel_1);
-		
-		idpedido = new JTextField();
-		idpedido.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		idpedido.setBounds(217, 81, 132, 19);
-		getContentPane().add(idpedido);
-		idpedido.setColumns(10);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Nome do entregador:");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1_1.setBounds(10, 135, 197, 25);
-		getContentPane().add(lblNewLabel_1_1);
-		
-		entregador = new JTextField();
-		entregador.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		entregador.setColumns(10);
-		entregador.setBounds(217, 142, 132, 19);
-		getContentPane().add(entregador);
-		
-		JButton btnNewButton = new JButton("Pagar");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(260, 202, 88, 33);
-		getContentPane().add(btnNewButton);
 		initialize();
 	}
 
@@ -78,9 +49,43 @@ public class TelaPagamento extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPagamento = new JFrame();
+		frmPagamento.setTitle("Pagamento");
+		frmPagamento.setBounds(100, 100, 450, 300);
+		frmPagamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPagamento.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Pagamento");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNewLabel.setBounds(141, 10, 202, 46);
+		frmPagamento.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("idpedido:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblNewLabel_1.setBounds(58, 86, 115, 30);
+		frmPagamento.getContentPane().add(lblNewLabel_1);
+		
+		idpedido = new JTextField();
+		idpedido.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		idpedido.setBounds(168, 93, 137, 19);
+		frmPagamento.getContentPane().add(idpedido);
+		idpedido.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Pagar");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton.setBounds(265, 194, 115, 30);
+		frmPagamento.getContentPane().add(btnNewButton);
+		
+		entregador = new JTextField();
+		entregador.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		entregador.setColumns(10);
+		entregador.setBounds(168, 143, 137, 19);
+		frmPagamento.getContentPane().add(entregador);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("entregador:");
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblNewLabel_1_1.setBounds(58, 132, 115, 30);
+		frmPagamento.getContentPane().add(lblNewLabel_1_1);
 	}
 
 }
