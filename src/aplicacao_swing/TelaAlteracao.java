@@ -1,17 +1,17 @@
 package aplicacao_swing;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.JTextField;
 
 import fachada.Fachada;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class TelaAlteracao {
 
@@ -47,9 +47,10 @@ public class TelaAlteracao {
 	 */
 	private void initialize() {
 		frmAlterao = new JFrame();
+		frmAlterao.setIconImage(
+				Toolkit.getDefaultToolkit().getImage(TelaAlteracao.class.getResource("/imagem/icon.png")));
 		frmAlterao.setTitle("Altera\u00E7\u00E3o");
 		frmAlterao.setBounds(100, 100, 450, 300);
-		frmAlterao.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAlterao.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Altera\u00E7\u00E3o");
@@ -88,7 +89,7 @@ public class TelaAlteracao {
 				try {
 					Fachada.adicionarProdutoPedido(Integer.parseInt(idpedido.getText()),
 							Integer.parseInt(idproduto.getText()));
-					resultLb.setText("Sucesso! o "+idpedido+ " foi adicionado!");
+					resultLb.setText("Sucesso! o " + idpedido + " foi adicionado!");
 				} catch (Exception e1) {
 					resultLb.setText(e1.getMessage());
 				}
@@ -103,7 +104,7 @@ public class TelaAlteracao {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Fachada.cancelarPedido(Integer.parseInt(idpedido.getText()));
-					resultLb.setText("Cancelado o pedido: "+idpedido);
+					resultLb.setText("Cancelado o pedido: " + idpedido);
 				} catch (Exception e1) {
 					resultLb.setText(e1.getMessage());
 				}

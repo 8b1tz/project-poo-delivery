@@ -1,17 +1,17 @@
 package aplicacao_swing;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.JTextField;
 
 import fachada.Fachada;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class TelaPagamento {
 
@@ -55,9 +55,10 @@ public class TelaPagamento {
 	 */
 	private void initialize() {
 		frmPagamento = new JFrame();
+		frmPagamento.setIconImage(
+				Toolkit.getDefaultToolkit().getImage(TelaPagamento.class.getResource("/imagem/icon.png")));
 		frmPagamento.setTitle("Pagamento");
 		frmPagamento.setBounds(100, 100, 450, 300);
-		frmPagamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPagamento.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Pagamento");
@@ -85,7 +86,7 @@ public class TelaPagamento {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Fachada.pagarPedido(Integer.parseInt(idpedido.getText()), entregador.getText().toString());
-					lblNewLabel_2.setText("Pago com sucesso o pedido: "+idpedido+ " do entregador "+entregador );
+					lblNewLabel_2.setText("Pago com sucesso o pedido: " + idpedido + " do entregador " + entregador);
 				} catch (Exception e1) {
 					lblNewLabel_2.setText(e1.getMessage());
 				}

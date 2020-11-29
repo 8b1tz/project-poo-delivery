@@ -2,6 +2,7 @@ package aplicacao_swing;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -48,7 +49,6 @@ public class TelaCriacao {
 	private void initialize() {
 		setFrame(new JFrame());
 		getFrame().setBounds(100, 100, 450, 300);
-		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCriao.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Cria\u00E7\u00E3o");
@@ -123,6 +123,7 @@ public class TelaCriacao {
 
 	public void setFrame(JFrame frame) {
 		this.frmCriao = frame;
+		frmCriao.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCriacao.class.getResource("/imagem/icon.png")));
 		frmCriao.setTitle("Cria\u00E7\u00E3o");
 	}
 }

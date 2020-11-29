@@ -1,17 +1,17 @@
 package aplicacao_swing;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.JTextField;
 
 import fachada.Fachada;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class TelaCancelamento {
 
@@ -46,9 +46,10 @@ public class TelaCancelamento {
 	 */
 	private void initialize() {
 		frmCancelamento = new JFrame();
+		frmCancelamento.setIconImage(
+				Toolkit.getDefaultToolkit().getImage(TelaCancelamento.class.getResource("/imagem/icon.png")));
 		frmCancelamento.setTitle("Cancelamento");
 		frmCancelamento.setBounds(100, 100, 450, 300);
-		frmCancelamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCancelamento.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Cancelamento");
@@ -75,7 +76,7 @@ public class TelaCancelamento {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Fachada.cancelarPedido(Integer.parseInt(idpedido.getText()));
-					lblNewLabel_2.setText("Pedido: "+idpedido+ " cancelado!");
+					lblNewLabel_2.setText("Pedido: " + idpedido + " cancelado!");
 				} catch (Exception e1) {
 					lblNewLabel_2.setText(e1.getMessage());
 				}

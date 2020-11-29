@@ -1,10 +1,13 @@
 package aplicacao_swing;
 
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -17,6 +20,7 @@ public class TelaPrincipal {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -27,6 +31,8 @@ public class TelaPrincipal {
 				}
 			}
 		});
+		
+		
 	}
 
 	/**
@@ -41,10 +47,10 @@ public class TelaPrincipal {
 	 */
 	private void initialize() {
 		frmMenu = new JFrame();
+		frmMenu.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaPrincipal.class.getResource("/imagem/icon.png")));
 		frmMenu.setTitle("Menu ");
 		frmMenu.setBounds(100, 100, 450, 300);
 		frmMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		JMenuBar menuBar = new JMenuBar();
 		frmMenu.setJMenuBar(menuBar);
 		
@@ -100,6 +106,12 @@ public class TelaPrincipal {
 			}
 		});
 		menuBar.add(mnNewMenu_1);
+		frmMenu.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagem/if.png")));
+		lblNewLabel.setBounds(0, 0, 436, 241);
+		frmMenu.getContentPane().add(lblNewLabel);
 	}
 
 }
