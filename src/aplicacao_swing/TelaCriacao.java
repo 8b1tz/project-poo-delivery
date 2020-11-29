@@ -1,13 +1,18 @@
 package aplicacao_swing;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
 import javax.swing.JRadioButton;
-import javax.swing.JButton;
+import javax.swing.JTextField;
+
+import fachada.Fachada;
+import modelo.Pedido;
 
 public class TelaCriacao {
 
@@ -45,42 +50,71 @@ public class TelaCriacao {
 		getFrame().setBounds(100, 100, 450, 300);
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCriao.getContentPane().setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Cria\u00E7\u00E3o");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblNewLabel.setBounds(154, 0, 116, 37);
 		frmCriao.getContentPane().add(lblNewLabel);
-		
+
 		telefone = new JTextField();
 		telefone.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		telefone.setBounds(146, 87, 124, 19);
 		frmCriao.getContentPane().add(telefone);
 		telefone.setColumns(10);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Telefone:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(61, 86, 75, 18);
 		frmCriao.getContentPane().add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_1_1 = new JLabel("Tipo de pedido:");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1_1.setBounds(61, 148, 154, 19);
+		lblNewLabel_1_1.setBounds(61, 116, 154, 19);
 		frmCriao.getContentPane().add(lblNewLabel_1_1);
-		
+
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Pedido Normal");
 		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		rdbtnNewRadioButton.setBounds(154, 186, 154, 19);
+		rdbtnNewRadioButton.setBounds(154, 141, 154, 19);
 		frmCriao.getContentPane().add(rdbtnNewRadioButton);
-		
+
 		JRadioButton rdbtnPedidoExpress = new JRadioButton("Pedido Express");
 		rdbtnPedidoExpress.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		rdbtnPedidoExpress.setBounds(154, 218, 154, 19);
+		rdbtnPedidoExpress.setBounds(154, 176, 154, 19);
 		frmCriao.getContentPane().add(rdbtnPedidoExpress);
-		
+
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_2.setBounds(26, 215, 373, 38);
+		frmCriao.getContentPane().add(lblNewLabel_2);
+
 		JButton btnNewButton = new JButton("Criar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (rdbtnNewRadioButton.isSelected() == true && rdbtnPedidoExpress.isSelected() == false) {
+					try {
+						Pedido id = Fachada.criarPedido((telefone).toString());
+						lblNewLabel_2.setText("Criado! id do pedido: " + id.getId());
+					} catch (Exception e1) {
+						lblNewLabel_2.setText(e1.getMessage());
+					}
+				}
+				if (rdbtnPedidoExpress.isSelected() == true && rdbtnNewRadioButton.isSelected() == false) {
+					try {
+						Pedido id = Fachada.criarPedido((telefone).toString(), 0.0);
+						lblNewLabel_2.setText("Criado! id do pedido: " + id.getId());
+					} catch (Exception e1) {
+						lblNewLabel_2.setText(e1.getMessage());
+					}
+				}
+				else {
+					lblNewLabel_2.setText("Não pode marcar 2 tipos ao mesmo tempo!");
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBounds(326, 232, 85, 21);
+		btnNewButton.setBounds(314, 176, 85, 21);
 		frmCriao.getContentPane().add(btnNewButton);
+
 	}
 
 	JFrame getFrame() {

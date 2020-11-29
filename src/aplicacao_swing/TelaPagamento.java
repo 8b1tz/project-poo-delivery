@@ -6,7 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import fachada.Fachada;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaPagamento {
 
@@ -54,38 +59,53 @@ public class TelaPagamento {
 		frmPagamento.setBounds(100, 100, 450, 300);
 		frmPagamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPagamento.getContentPane().setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Pagamento");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblNewLabel.setBounds(141, 10, 202, 46);
 		frmPagamento.getContentPane().add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("idpedido:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblNewLabel_1.setBounds(58, 86, 115, 30);
 		frmPagamento.getContentPane().add(lblNewLabel_1);
-		
+
 		idpedido = new JTextField();
 		idpedido.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		idpedido.setBounds(168, 93, 137, 19);
 		frmPagamento.getContentPane().add(idpedido);
 		idpedido.setColumns(10);
-		
+
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_2.setBounds(32, 207, 351, 46);
+		frmPagamento.getContentPane().add(lblNewLabel_2);
 		JButton btnNewButton = new JButton("Pagar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Fachada.pagarPedido(Integer.parseInt(idpedido.getText()), entregador.toString());
+					lblNewLabel_2.setText("Pago com sucesso o pedido: "+idpedido+ " do entregador "+entregador );
+				} catch (Exception e1) {
+					lblNewLabel_2.setText(e1.getMessage());
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(265, 194, 115, 30);
+		btnNewButton.setBounds(293, 172, 115, 30);
 		frmPagamento.getContentPane().add(btnNewButton);
-		
+
 		entregador = new JTextField();
 		entregador.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		entregador.setColumns(10);
 		entregador.setBounds(168, 143, 137, 19);
 		frmPagamento.getContentPane().add(entregador);
-		
+
 		JLabel lblNewLabel_1_1 = new JLabel("entregador:");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblNewLabel_1_1.setBounds(58, 132, 115, 30);
 		frmPagamento.getContentPane().add(lblNewLabel_1_1);
+
 	}
 
 }
