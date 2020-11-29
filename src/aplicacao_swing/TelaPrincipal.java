@@ -91,6 +91,13 @@ public class TelaPrincipal {
 		mnNewMenu.add(mntmNewMenuItem_3);
 		
 		JMenu mnNewMenu_1 = new JMenu("Listagem");
+		mnNewMenu_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaListagem window = new TelaListagem();
+				window.getFrmListagem().setVisible(true);
+			}
+		});
 		menuBar.add(mnNewMenu_1);
 	}
 
