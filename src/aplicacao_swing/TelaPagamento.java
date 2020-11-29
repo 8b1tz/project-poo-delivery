@@ -84,7 +84,7 @@ public class TelaPagamento {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Fachada.pagarPedido(Integer.parseInt(idpedido.getText()), entregador.toString());
+					Fachada.pagarPedido(Integer.parseInt(idpedido.getText()), entregador.getText().toString());
 					lblNewLabel_2.setText("Pago com sucesso o pedido: "+idpedido+ " do entregador "+entregador );
 				} catch (Exception e1) {
 					lblNewLabel_2.setText(e1.getMessage());

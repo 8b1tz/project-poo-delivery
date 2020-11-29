@@ -92,7 +92,7 @@ public class TelaCriacao {
 			public void actionPerformed(ActionEvent e) {
 				if (rdbtnNewRadioButton.isSelected() == true && rdbtnPedidoExpress.isSelected() == false) {
 					try {
-						Pedido id = Fachada.criarPedido((telefone).toString());
+						Pedido id = Fachada.criarPedido((telefone.getText()).toString());
 						lblNewLabel_2.setText("Criado! id do pedido: " + id.getId());
 					} catch (Exception e1) {
 						lblNewLabel_2.setText(e1.getMessage());
@@ -100,7 +100,7 @@ public class TelaCriacao {
 				}
 				if (rdbtnPedidoExpress.isSelected() == true && rdbtnNewRadioButton.isSelected() == false) {
 					try {
-						Pedido id = Fachada.criarPedido((telefone).toString(), 0.0);
+						Pedido id = Fachada.criarPedido((telefone.getText()).toString(), 0.0);
 						lblNewLabel_2.setText("Criado! id do pedido: " + id.getId());
 					} catch (Exception e1) {
 						lblNewLabel_2.setText(e1.getMessage());
