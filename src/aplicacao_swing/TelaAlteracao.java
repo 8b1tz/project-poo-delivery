@@ -50,11 +50,11 @@ public class TelaAlteracao {
 		frmAlterao.setResizable(false);
 		frmAlterao.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaAlteracao.class.getResource("/imagem/icon.png")));
-		frmAlterao.setTitle("Altera\u00E7\u00E3o");
+		frmAlterao.setTitle("Alteracao");
 		frmAlterao.setBounds(100, 100, 450, 300);
 		frmAlterao.getContentPane().setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Altera\u00E7\u00E3o");
+		JLabel lblNewLabel = new JLabel("Alteracao");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblNewLabel.setBounds(135, 0, 197, 49);
 		frmAlterao.getContentPane().add(lblNewLabel);
@@ -90,7 +90,7 @@ public class TelaAlteracao {
 				try {
 					Fachada.adicionarProdutoPedido(Integer.parseInt(idpedido.getText()),
 							Integer.parseInt(idproduto.getText()));
-					resultLb.setText("Sucesso! o " + idpedido + " foi adicionado!");
+					resultLb.setText("Sucesso! o " + idpedido.getText() + " foi adicionado!");
 				} catch (Exception e1) {
 					resultLb.setText(e1.getMessage());
 				}
@@ -105,7 +105,7 @@ public class TelaAlteracao {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Fachada.cancelarPedido(Integer.parseInt(idpedido.getText()));
-					resultLb.setText("Cancelado o pedido: " + idpedido);
+					resultLb.setText("Cancelado o pedido: " + idpedido.getText());
 				} catch (Exception e1) {
 					resultLb.setText(e1.getMessage());
 				}
