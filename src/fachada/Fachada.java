@@ -27,37 +27,35 @@ public class Fachada {
 	public static ArrayList<Pedido> listarPedidos() {
 		return repositorio.getPedidos();
 	}
-
-	public static ArrayList<Pedido> listarPedidos(String tel, int tipo) throws Exception {
+	
+	public static ArrayList<Pedido> listarPedidos(String tel, int tipo)  throws Exception {
 		if (repositorio.localizarCliente(tel) != null) {
 			return repositorio.getPedidoByTel_Tipo(tel, tipo);
-		} else {
+		}else {
 			throw new Exception("Telefone nao encontrado");
 		}
 	}
 
-	public static Pedido getPedidoById(int idpedido) throws Exception {
+	public static Pedido getPedidoById(int idpedido)  throws Exception {
 		if (repositorio.localizarPedido(idpedido) != null) {
 			return repositorio.localizarPedido(idpedido);
 		}else {
-			throw new Exception("Id do pedido não encontrado");
-
+			throw new Exception("Id do pedido nao encontrado");
 		}
 	}
 
-	public static Produto cadastrarProduto(String nome, double preco) throws Exception {
+
+	public static Produto cadastrarProduto(String nome, double preco)  throws Exception {
 		idproduto++;
 		ArrayList<Pedido> ped = new ArrayList<>();
 		;
 		Produto produto;
 		produto = new Produto(idproduto, nome, preco, ped);
-		if (repositorio.localizarProduto(nome) == null) {
+		if(repositorio.localizarProduto(nome) == null) {
 			repositorio.adicionar(produto);
 			return produto;
-
 		}else {
-			throw new Exception("Produto com esse exato nome já existe");
-
+			throw new Exception("Produto com esse exato nome ja existe");
 		}
 	}
 
@@ -65,13 +63,11 @@ public class Fachada {
 		Cliente cliente;
 		ArrayList<Pedido> pedidos = new ArrayList<>();
 		cliente = new Cliente(telefone, nome, endereco, pedidos);
-		if (repositorio.localizarCliente(telefone) == null) {
+		if(repositorio.localizarCliente(telefone) == null) {
 			repositorio.adicionar(cliente);
 			return cliente;
-
 		}else {
-			throw new Exception("Cliente com esse telefone já existe");
-
+			throw new Exception("Cliente com esse telefone ja existe");
 		}
 	}
 
@@ -88,7 +84,7 @@ public class Fachada {
             return pedido;
         }
         else {
-            throw new Exception("Cliente não existe");
+            throw new Exception("Cliente nao existe");
         }
     }
 
@@ -105,18 +101,17 @@ public class Fachada {
             repositorio.adicionar(pedido);
             return pedido;
             }
-        throw new Exception("Cliente não existe");
+        throw new Exception("Cliente nao existe");
 	}
-
+	
 	public static void adicionarProdutoPedido(int idpedido, int idproduto) throws Exception {
 		Pedido pe;
 		Produto pr;
 		pe = repositorio.localizarPedido(idpedido);
 		pr = repositorio.localizarProduto(idproduto);
 		if (pe != null) {
-
 			if (pe.isPago() == true){
-				throw new Exception("Pedido já foi pago");
+				throw new Exception("Pedido ja foi pago");
 				}
 			else if (pr != null) {
 						pe.addProduto(pr);
@@ -124,52 +119,37 @@ public class Fachada {
 						pe.getCliente().addPedido(pe);
 						pe.setValortotal(pe.geraValortotal());
 				}else {
-						throw new Exception("Produto com esse id não existe");
+						throw new Exception("Produto com esse id nao existe");
 						}
 		}else {
-			throw new Exception("Pedido com esse id não existe");
-				}
-
-			}
-		} else {
 			throw new Exception("Pedido com esse id nao existe");
-		}
-	}
+				}
+			}
 
-	public static void removerProdutoPedido(int idpedido, int idproduto) throws Exception {
+	public static void removerProdutoPedido(int idpedido, int idproduto)  throws Exception {
 		Pedido pe;
 		Produto pr;
 		pe = repositorio.localizarPedido(idpedido);
 		pr = repositorio.localizarProduto(idproduto);
 		if (pe != null) {
-
 			if (pe.isPago() == true){
-				throw new Exception("Pedido já foi pago");
+				throw new Exception("Pedido ja foi pago");
 			}
 			else if (pr != null) {
-
 				if (pe.getProdutosIds().contains(idproduto)) {
 					pe.remProduto(pr);
 					pr.remPedido(pe);
 					pe.setValortotal(pe.geraValortotal());
-
 				}else {
-					throw new Exception("Produto com esse id não existe dentro desse Pedido");
+					throw new Exception("Produto com esse id nao existe dentro desse Pedido");
 					}
 			}else {
-					throw new Exception("Produto com esse id não existe");
+					throw new Exception("Produto com esse id nao existe");
 					}
 		}else {
-			throw new Exception("Pedido com esse id não existe");
-
-				}
-			} else {
-				throw new Exception("Produto com esse id nao existe");
-			}
-		} else {
 			throw new Exception("Pedido com esse id nao existe");
-		}
-	}
+				}
+			}
 
 	public static Pedido consultarPedido(int idpedido) throws Exception {
 		Pedido res;
@@ -177,8 +157,7 @@ public class Fachada {
 		if (res != null) {
 			return res;
 		} else {
-			throw new Exception("Não existe esse pedido");
-
+			throw new Exception("Nao existe esse pedido");
 		}
 	}
 
@@ -186,11 +165,9 @@ public class Fachada {
 		Pedido res;
 		res = repositorio.localizarPedido(idpedido);
 		if (res == null) {
-
-			throw new Exception("Não existe esse pedido");
+			throw new Exception("Nao existe esse pedido");
 		}else if (res.isPago() == true){
-			throw new Exception("Pedido já foi pago");
-
+			throw new Exception("Pedido ja foi pago");
 		}
 		res.setEntregador(nomeentregador);
 		res.setPago(true);
@@ -201,11 +178,9 @@ public class Fachada {
 		Pedido res;
 		res = repositorio.localizarPedido(idpedido);
 		if (res == null) {
-
-			throw new Exception("Não existe esse pedido!");
+			throw new Exception("Nao existe esse pedido!");
 		}else if (res.isPago() == true){
-			throw new Exception("Pedido já foi pago");
-
+			throw new Exception("Pedido ja foi pago");
 		}
 		for (Produto pr : repositorio.getProdutos("")) {
 			if (pr.getPedidos().contains(res)) {
@@ -214,7 +189,7 @@ public class Fachada {
 		}
 
 		res.getCliente().getPedidos().remove(res);
-
+		
 		repositorio.remover(res);
 
 	}
@@ -222,7 +197,7 @@ public class Fachada {
 	public static double consultarArrecadacao(Integer dia) {
 		double total = 0;
 		for (Pedido p : repositorio.getPedidos()) {
-			if (p.isPago() == true & p.getDatahora().getDayOfMonth() == dia) {
+			if (p.isPago() == true &  p.getDatahora().getDayOfMonth() == dia ) {
 				total = total + p.getValortotal();
 			}
 		}
@@ -230,29 +205,29 @@ public class Fachada {
 	}
 
 	public static ArrayList<Produto> consultarProdutoTop() {
-		ArrayList<Produto> res = new ArrayList<>();
-		HashMap<Produto, Integer> contagem = new HashMap<>();
-		int max = 0;
-		for (Pedido pe : repositorio.getPedidos()) {
-			for (Produto prod : pe.getProdutos()) {
-				if (contagem.containsKey(prod)) {
-					contagem.put(prod, contagem.get(prod) + 1);
+        ArrayList<Produto> res = new ArrayList<>();
+        HashMap<Produto, Integer> contagem = new HashMap<>();
+        int max = 0;
+        for (Pedido pe : repositorio.getPedidos()) {
+            for (Produto prod : pe.getProdutos()) {
+                if (contagem.containsKey(prod)) {
+                    contagem.put(prod, contagem.get(prod) + 1);
 
-				} else {
-					contagem.put(prod, 1);
-				}
-				if (contagem.get(prod) > max) {
-					max = contagem.get(prod);
-				}
-			}
-		}
-		for (Entry<Produto, Integer> entry : contagem.entrySet()) {
-			if (entry.getValue() >= max) {
-				res.add(entry.getKey());
-			}
-		}
+                } else {
+                    contagem.put(prod, 1);
+                }
+                if (contagem.get(prod) > max) {
+                    max = contagem.get(prod);
+                }
+            }
+        }
+        for (Entry<Produto, Integer> entry : contagem.entrySet()) {
+            if (entry.getValue() >= max) {
+                res.add(entry.getKey());
+            }
+        }
 
-		return res;
+        return res;
 
-	}
+    }
 }
