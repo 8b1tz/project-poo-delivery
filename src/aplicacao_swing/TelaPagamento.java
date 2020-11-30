@@ -67,8 +67,8 @@ public class TelaPagamento {
 		lblNewLabel.setBounds(141, 10, 202, 46);
 		frmPagamento.getContentPane().add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("idpedido:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		JLabel lblNewLabel_1 = new JLabel("id do pedido:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(58, 86, 115, 30);
 		frmPagamento.getContentPane().add(lblNewLabel_1);
 
@@ -104,7 +104,7 @@ public class TelaPagamento {
 		frmPagamento.getContentPane().add(entregador);
 
 		JLabel lblNewLabel_1_1 = new JLabel("entregador:");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_1.setBounds(58, 132, 115, 30);
 		frmPagamento.getContentPane().add(lblNewLabel_1_1);
 

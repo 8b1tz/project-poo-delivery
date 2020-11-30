@@ -58,12 +58,13 @@ public class TelaCancelamento {
 		lblNewLabel.setBounds(102, 0, 228, 43);
 		frmCancelamento.getContentPane().add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("idpedido:");
+		JLabel lblNewLabel_1 = new JLabel("id do pedido:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(60, 116, 106, 28);
 		frmCancelamento.getContentPane().add(lblNewLabel_1);
 
 		idpedido = new JTextField();
+		idpedido.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		idpedido.setBounds(175, 124, 118, 19);
 		frmCancelamento.getContentPane().add(idpedido);
 		idpedido.setColumns(10);
