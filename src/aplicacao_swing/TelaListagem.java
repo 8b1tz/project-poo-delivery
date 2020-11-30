@@ -171,7 +171,7 @@ public class TelaListagem {
 		btnPedidosDoCliente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frmListagem.getContentPane().add(btnPedidosDoCliente);
 
-		JButton btnArrecadao = new JButton("Arrecadaçao");
+		JButton btnArrecadao = new JButton("Arrecadacao");
 		btnArrecadao.setBounds(375, 302, 174, 34);
 		btnArrecadao.addMouseListener(new MouseAdapter() {
 			@Override

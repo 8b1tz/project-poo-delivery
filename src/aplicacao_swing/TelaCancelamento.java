@@ -78,7 +78,7 @@ public class TelaCancelamento {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Fachada.cancelarPedido(Integer.parseInt(idpedido.getText()));
-					lblNewLabel_2.setText("Pedido: " + idpedido + " cancelado!");
+					lblNewLabel_2.setText("Pedido: " + idpedido.getText() + " cancelado!");
 				} catch (Exception e1) {
 					lblNewLabel_2.setText(e1.getMessage());
 				}
