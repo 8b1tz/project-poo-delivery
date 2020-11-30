@@ -111,11 +111,15 @@ public class TelaListagem {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String str = "";
-				for (Pedido p : Fachada.listarPedidos(textField.getText(),1)) {
-					str += p.getId() + p.getCliente().getNome().toString() + " - " + p.getCliente().getTelefone()
-							+ " - " + p.getProdutosIds() + "\n";
+				try {
+					for (Pedido p : Fachada.listarPedidos(textField.getText(), 1)) {
+						str += p.getId() + p.getCliente().getNome().toString() + " - " + p.getCliente().getTelefone()
+								+ " - " + p.getProdutosIds() + "\n";
+					}
+					textArea.setText(str);
+				} catch (Exception e1) {
+					textArea.setText(e1.getMessage());
 				}
-				textArea.setText(str);
 			}
 		});
 		btnPedidosPagosDo.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -127,12 +131,16 @@ public class TelaListagem {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String str = "";
-				for (Pedido p : Fachada.listarPedidos(textField.getText(),2)) {
+				try {
+					for (Pedido p : Fachada.listarPedidos(textField.getText(), 2)) {
 						str += p.getId() + p.getCliente().getNome().toString() + " - " + p.getCliente().getTelefone()
 								+ " - " + p.getProdutosIds() + "\n";
-					
+
+					}
+					textArea.setText(str);
+				} catch (Exception e1) {
+					textArea.setText(e1.getMessage());
 				}
-				textArea.setText(str);
 			}
 		});
 		btnPedidosNoPagos.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -160,12 +168,16 @@ public class TelaListagem {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String str = "";
-				for (Pedido p : Fachada.listarPedidos(textField.getText(),3)) {
+				try {
+					for (Pedido p : Fachada.listarPedidos(textField.getText(), 3)) {
 						str += p.getId() + p.getCliente().getNome().toString() + " - " + p.getCliente().getTelefone()
 								+ " - " + p.getProdutosIds() + "\n";
-					
+
+					}
+					textArea.setText(str);
+				} catch (Exception e1) {
+					textArea.setText(e1.getMessage());
 				}
-				textArea.setText(str);
 			}
 		});
 		btnPedidosDoCliente.setFont(new Font("Tahoma", Font.PLAIN, 14));
