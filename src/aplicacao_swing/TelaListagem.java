@@ -3,8 +3,6 @@ package aplicacao_swing;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
@@ -66,7 +64,7 @@ public class TelaListagem {
 		frmListagem.getContentPane().add(lblNewLabel);
 
 		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textField.setBounds(105, 55, 163, 33);
 		frmListagem.getContentPane().add(textField);
 		textField.setColumns(10);
@@ -77,7 +75,7 @@ public class TelaListagem {
 		frmListagem.getContentPane().add(textArea);
 
 		JButton btnNewButton = new JButton("Produtos");
-		btnNewButton.setBounds(375, 26, 126, 34);
+		btnNewButton.setBounds(375, 26, 174, 34);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -93,7 +91,7 @@ public class TelaListagem {
 		frmListagem.getContentPane().add(btnNewButton);
 
 		JButton btnClientes = new JButton("Clientes");
-		btnClientes.setBounds(375, 122, 126, 34);
+		btnClientes.setBounds(375, 122, 174, 34);
 		btnClientes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -113,35 +111,26 @@ public class TelaListagem {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String str = "";
-
-				String s = textField.getSelectedText().toString();
-				for (Pedido p : Fachada.listarPedidos(s, 1)) {
+				for (Pedido p : Fachada.listarPedidos(textField.getText(),1)) {
 					str += p.getId() + p.getCliente().getNome().toString() + " - " + p.getCliente().getTelefone()
 							+ " - " + p.getProdutosIds() + "\n";
-
 				}
 				textArea.setText(str);
-
 			}
 		});
 		btnPedidosPagosDo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmListagem.getContentPane().add(btnPedidosPagosDo);
 
-		JButton btnPedidosNoPagos = new JButton("Pedidos do cliente n\u00E3o pagos");
-		btnPedidosNoPagos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		JButton btnPedidosNoPagos = new JButton("Pedidos do cliente nao pagos");
 		btnPedidosNoPagos.setBounds(375, 212, 174, 34);
 		btnPedidosNoPagos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String str = "";
-				for (Pedido p : Fachada.listarPedidos()) {
-					if (p.isPago() != true & p.getCliente().getTelefone().contentEquals(textField.getText())) {
+				for (Pedido p : Fachada.listarPedidos(textField.getText(),2)) {
 						str += p.getId() + p.getCliente().getNome().toString() + " - " + p.getCliente().getTelefone()
 								+ " - " + p.getProdutosIds() + "\n";
-					}
+					
 				}
 				textArea.setText(str);
 			}
@@ -150,7 +139,7 @@ public class TelaListagem {
 		frmListagem.getContentPane().add(btnPedidosNoPagos);
 
 		JButton btnPedidos = new JButton("Pedidos");
-		btnPedidos.setBounds(375, 76, 126, 34);
+		btnPedidos.setBounds(375, 76, 176, 34);
 		btnPedidos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -166,20 +155,15 @@ public class TelaListagem {
 		frmListagem.getContentPane().add(btnPedidos);
 
 		JButton btnPedidosDoCliente = new JButton("Pedidos do cliente");
-		btnPedidosDoCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnPedidosDoCliente.setBounds(375, 167, 174, 34);
 		btnPedidosDoCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String str = "";
-				for (Pedido p : Fachada.listarPedidos()) {
-					if (p.getCliente().getTelefone().contentEquals(textField.getText())) {
+				for (Pedido p : Fachada.listarPedidos(textField.getText(),3)) {
 						str += p.getId() + p.getCliente().getNome().toString() + " - " + p.getCliente().getTelefone()
 								+ " - " + p.getProdutosIds() + "\n";
-					}
+					
 				}
 				textArea.setText(str);
 			}
@@ -187,8 +171,8 @@ public class TelaListagem {
 		btnPedidosDoCliente.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frmListagem.getContentPane().add(btnPedidosDoCliente);
 
-		JButton btnArrecadao = new JButton("Arrecada\u00E7\u00E3o");
-		btnArrecadao.setBounds(375, 302, 126, 34);
+		JButton btnArrecadao = new JButton("Arrecadaçao");
+		btnArrecadao.setBounds(375, 302, 174, 34);
 		btnArrecadao.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -201,7 +185,7 @@ public class TelaListagem {
 		frmListagem.getContentPane().add(btnArrecadao);
 
 		JButton btnProdutosTop = new JButton("Produtos TOP");
-		btnProdutosTop.setBounds(375, 347, 126, 37);
+		btnProdutosTop.setBounds(375, 347, 174, 37);
 		btnProdutosTop.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -8,6 +8,13 @@ import modelo.Cliente;
 import modelo.Pedido;
 
 public class Programa {
+
+	public static void main(String[] args) throws Exception {}
+	public Programa() {
+		String texto;
+		try {
+			// Adicionando produtos
+
 			Fachada.cadastrarProduto("TV", 2000.0);
 			Fachada.cadastrarProduto("NOTEBOOK", 3000.0);
 			Fachada.cadastrarProduto("PS4", 2000.0);

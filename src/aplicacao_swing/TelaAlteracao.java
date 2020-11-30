@@ -70,13 +70,13 @@ public class TelaAlteracao {
 		frmAlterao.getContentPane().add(lblNewLabel_1_1);
 
 		idpedido = new JTextField();
-		idpedido.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		idpedido.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		idpedido.setBounds(169, 84, 163, 19);
 		frmAlterao.getContentPane().add(idpedido);
 		idpedido.setColumns(10);
 
 		idproduto = new JTextField();
-		idproduto.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		idproduto.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		idproduto.setColumns(10);
 		idproduto.setBounds(169, 122, 163, 19);
 		frmAlterao.getContentPane().add(idproduto);

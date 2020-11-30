@@ -2,9 +2,9 @@ package repositorio;
 
 import java.util.ArrayList;
 
-import modelo.Produto;
-import modelo.Pedido;
 import modelo.Cliente;
+import modelo.Pedido;
+import modelo.Produto;
 
 public class Repositorio {
 	private ArrayList<Produto> produtos = new ArrayList<>();
@@ -27,7 +27,7 @@ public class Repositorio {
 		}
 		return null;
 	}
-	
+
 	public Produto localizarProduto(int id) {
 		for (Produto pr : produtos) {
 			if (pr.getId() == id)
@@ -64,18 +64,18 @@ public class Repositorio {
 	}
 
 	public Cliente localizarCliente(String telefone) {
-		for (Cliente c : clientes) {
-			if (c.getTelefone() == telefone)
-				return c;
-		}
-		return null;
-	}
+        for (Cliente c : clientes) {
+            if (c.getTelefone().equals(telefone))
+                return c;
+        }
+        return null;
+    }
 
 	public int getTotalClientes() {
 		return clientes.size();
 	}
 	/* Pedidos */
-	
+
 	public void adicionar(Pedido p) {
 		pedidos.add(p);
 	}
@@ -91,13 +91,13 @@ public class Repositorio {
 	public ArrayList<Pedido> getPedidoByTel_Tipo(String tel, int tipo) {
 		ArrayList<Pedido> pedidosByTipo = new ArrayList<>();
 		for (Pedido p : pedidos) {
-			if (p.getCliente().getTelefone() == tel) {
+			if (p.getCliente().getTelefone().equals(tel)) {
 				if (tipo == 1 && p.isPago() == true) {
 					pedidosByTipo.add(p);
 				} else if (tipo == 2 && p.isPago() == false) {
 					pedidosByTipo.add(p);
 				} else if (tipo == 3) {
-					return pedidos;
+					pedidosByTipo.add(p);
 				}
 			}
 		}

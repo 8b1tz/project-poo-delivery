@@ -57,7 +57,7 @@ public class TelaCriacao {
 		frmCriao.getContentPane().add(lblNewLabel);
 
 		telefone = new JTextField();
-		telefone.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		telefone.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		telefone.setBounds(146, 87, 124, 19);
 		frmCriao.getContentPane().add(telefone);
 		telefone.setColumns(10);
@@ -73,12 +73,12 @@ public class TelaCriacao {
 		frmCriao.getContentPane().add(lblNewLabel_1_1);
 
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Pedido Normal");
-		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		rdbtnNewRadioButton.setBounds(154, 141, 154, 19);
 		frmCriao.getContentPane().add(rdbtnNewRadioButton);
 
 		JRadioButton rdbtnPedidoExpress = new JRadioButton("Pedido Express");
-		rdbtnPedidoExpress.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		rdbtnPedidoExpress.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		rdbtnPedidoExpress.setBounds(154, 176, 154, 19);
 		frmCriao.getContentPane().add(rdbtnPedidoExpress);
 
@@ -94,7 +94,7 @@ public class TelaCriacao {
 			public void actionPerformed(ActionEvent e) {
 				if (rdbtnNewRadioButton.isSelected() == true && rdbtnPedidoExpress.isSelected() == false) {
 					try {
-						Pedido id = Fachada.criarPedido((telefone.getText()).toString());
+						Pedido id = Fachada.criarPedido(telefone.getText());
 						lblNewLabel_2.setText("Criado! id do pedido: " + id.getId());
 					} catch (Exception e1) {
 						lblNewLabel_2.setText(e1.getMessage());
@@ -110,13 +110,32 @@ public class TelaCriacao {
 				}
 				if (rdbtnPedidoExpress.isSelected() == true && rdbtnNewRadioButton.isSelected() == true) {
 					lblNewLabel_2.setText("Não pode marcar 2 tipos ao mesmo tempo!");
+					
 				}
 			}
 
 		});
 
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBounds(314, 176, 85, 21);
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton.setBounds(314, 208, 85, 21);
+		rdbtnPedidoExpress.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (rdbtnPedidoExpress.isSelected() == true && rdbtnNewRadioButton.isSelected() == true) {
+                    btnNewButton.setEnabled(false);
+                }
+                else {
+                    btnNewButton.setEnabled(true);
+                }
+            }});
+        rdbtnNewRadioButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (rdbtnPedidoExpress.isSelected() == true && rdbtnNewRadioButton.isSelected() == true) {
+                    btnNewButton.setEnabled(false);
+                }
+                else {
+                    btnNewButton.setEnabled(true);
+                }
+            }});
 		frmCriao.getContentPane().add(btnNewButton);
 
 	}
