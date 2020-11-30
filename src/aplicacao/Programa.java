@@ -14,11 +14,11 @@ public class Programa {
 		String texto;
 		try {
 			// Adicionando produtos
-			Fachada.cadastrarProduto("TV", 2000.0);
-			Fachada.cadastrarProduto("NOTEBOOK", 3000.0);
-			Fachada.cadastrarProduto("PS4", 2000.0);
-			Fachada.cadastrarProduto("TABLET", 3500.0);
-			Fachada.cadastrarProduto("CELULAR", 2500.0);
+			Fachada.cadastrarProduto("Pizza de bacon", 52.5);
+            Fachada.cadastrarProduto("Torta de queijo", 34.5);
+            Fachada.cadastrarProduto("Bolo de chocolate", 25.0);
+            Fachada.cadastrarProduto("Pastel de frango", 8.5);
+            Fachada.cadastrarProduto("Guaraná", 5.0);
 
 			// Adicionando clientes
 			Fachada.cadastrarCliente("982000000", "Ana Julia", "Brasil"); // express
