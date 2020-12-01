@@ -1,9 +1,7 @@
-# Projeto POO Delivery, faltam ( 4 ) dias !!
+# Projeto POO Delivery
 
-<h2>Faltam ( 3 ) atividades !</h2>
-
-- Confirmar que o programa segue as regras de negocio 
-- Tratamento de erros em ( 16 ) Metodos ( Fachada )
-- Aplicacao Swing com ( 6 ) Telas
+Alunas:
+- Ana Júlia Oliveira Lins - 20191370002 <br>
+- Yohanna de Oliveira Cavalcanti - 20191370003
 
 
