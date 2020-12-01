@@ -10,8 +10,10 @@ import java.time.LocalDate;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 import fachada.Fachada;
 import modelo.Cliente;
@@ -64,15 +66,22 @@ public class TelaListagem {
 		frmListagem.getContentPane().add(lblNewLabel);
 
 		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textField.setBounds(105, 55, 163, 33);
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		frmListagem.getContentPane().add(textField);
 		textField.setColumns(10);
 
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(17, 99, 348, 285);
+		textArea.setBounds(10, 82, 439, 121);
+		textArea.setLineWrap(true);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		frmListagem.getContentPane().add(textArea);
+
+		JScrollPane scroll = new JScrollPane(textArea);
+		scroll.setBounds(11, 106, 354, 300);
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		frmListagem.getContentPane().add(scroll);
 
 		JButton btnNewButton = new JButton("Produtos");
 		btnNewButton.setBounds(375, 26, 174, 34);
@@ -81,7 +90,7 @@ public class TelaListagem {
 			public void mouseClicked(MouseEvent e) {
 				String str = "";
 				for (Produto p : Fachada.listarProdutos("")) {
-					str += p.getId() + " - " + p.getNome().toString() + " - " + p.getPedidosIds() + "\n";
+					str += p.toString() + "\n \n";
 					// str += p.toString() + "\n";
 				}
 				textArea.setText(str);
@@ -97,7 +106,7 @@ public class TelaListagem {
 			public void mouseClicked(MouseEvent e) {
 				String str = "";
 				for (Cliente c : Fachada.listarClientes()) {
-					str += c.getNome().toString() + " - " + c.getTelefone() + " - " + c.getPedidosIds() + "\n";
+					str += c.toString() + "\n \n";
 				}
 				textArea.setText(str);
 			}
@@ -113,8 +122,7 @@ public class TelaListagem {
 				String str = "";
 				try {
 					for (Pedido p : Fachada.listarPedidos(textField.getText(), 1)) {
-						str += p.getId() + p.getCliente().getNome().toString() + " - " + p.getCliente().getTelefone()
-								+ " - " + p.getProdutosIds() + "\n";
+						str += p.toString() + "\n \n";
 					}
 					textArea.setText(str);
 				} catch (Exception e1) {
@@ -133,8 +141,7 @@ public class TelaListagem {
 				String str = "";
 				try {
 					for (Pedido p : Fachada.listarPedidos(textField.getText(), 2)) {
-						str += p.getId() + p.getCliente().getNome().toString() + " - " + p.getCliente().getTelefone()
-								+ " - " + p.getProdutosIds() + "\n";
+						str += p.toString() + "\n \n";
 
 					}
 					textArea.setText(str);
@@ -153,8 +160,7 @@ public class TelaListagem {
 			public void mouseClicked(MouseEvent e) {
 				String str = "";
 				for (Pedido p : Fachada.listarPedidos()) {
-					str += p.getId() + p.getCliente().getNome().toString() + " - " + p.getCliente().getTelefone()
-							+ " - " + p.getProdutosIds() + "\n";
+					str += p.toString() + "\n \n";
 				}
 				textArea.setText(str);
 			}
@@ -170,8 +176,7 @@ public class TelaListagem {
 				String str = "";
 				try {
 					for (Pedido p : Fachada.listarPedidos(textField.getText(), 3)) {
-						str += p.getId() + p.getCliente().getNome().toString() + " - " + p.getCliente().getTelefone()
-								+ " - " + p.getProdutosIds() + "\n";
+						str += p.toString() + "\n \n";
 
 					}
 					textArea.setText(str);
@@ -203,7 +208,7 @@ public class TelaListagem {
 			public void mouseClicked(MouseEvent e) {
 				String str = "";
 				for (Produto p : Fachada.consultarProdutoTop()) {
-					str += p.getId() + " - " + p.getNome().toString() + " - " + p.getPedidosIds() + "\n";
+					str += p.toString() + "\n \n";
 				}
 				textArea.setText(str);
 			}
@@ -212,8 +217,8 @@ public class TelaListagem {
 		frmListagem.getContentPane().add(btnProdutosTop);
 
 		JLabel lblNewLabel_2 = new JLabel("Telefone:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_2.setBounds(17, 53, 77, 35);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		frmListagem.getContentPane().add(lblNewLabel_2);
 
 	}
