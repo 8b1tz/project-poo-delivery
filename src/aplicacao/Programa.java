@@ -90,7 +90,7 @@ public class Programa {
 				texto += p + "\n";
 
 		int dia = LocalDate.now().getDayOfMonth();
-		texto += "\n Arrecadação na data de hoje: \n";
+		texto += "\n ArrecadaÃ§Ã£o na data de hoje: \n";
 		texto += Fachada.consultarArrecadacao(dia) + "\n";
 
 		texto += "\nListagem de TOP produtos: \n";
@@ -99,6 +99,7 @@ public class Programa {
 
 		System.out.println(texto);
 
+		// Mostrando o tratamento de Exceções
 		System.out.println("\n Teste de Excecoes: \n");
 		try {
 			Fachada.cadastrarProduto("CELULAR", 2500.0);

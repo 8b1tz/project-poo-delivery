@@ -90,7 +90,7 @@ public class TelaAlteracao {
 				try {
 					Fachada.adicionarProdutoPedido(Integer.parseInt(idpedido.getText()),
 							Integer.parseInt(idproduto.getText()));
-					resultLb.setText("Sucesso! o " + idpedido.getText() + " foi adicionado!");
+					resultLb.setText("Sucesso! o produto " + idproduto.getText() +" no pedido "+ idpedido.getText() + " foi adicionado!");
 				} catch (Exception e1) {
 					resultLb.setText(e1.getMessage());
 				}
@@ -100,12 +100,13 @@ public class TelaAlteracao {
 		btnNewButton.setBounds(40, 159, 111, 19);
 		frmAlterao.getContentPane().add(btnNewButton);
 
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Remover");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Fachada.cancelarPedido(Integer.parseInt(idpedido.getText()));
-					resultLb.setText("Cancelado o pedido: " + idpedido.getText());
+					Fachada.removerProdutoPedido(Integer.parseInt(idpedido.getText()),
+							Integer.parseInt(idproduto.getText()));
+					resultLb.setText("Sucesso! o produto " + idproduto.getText() +" no pedido "+ idpedido.getText() + " foi removido!");
 				} catch (Exception e1) {
 					resultLb.setText(e1.getMessage());
 				}
