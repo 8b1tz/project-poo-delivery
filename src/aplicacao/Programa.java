@@ -99,6 +99,7 @@ public class Programa {
 
 		System.out.println(texto);
 
+		// Mostrando o tratamento de Exceções
 		System.out.println("\n Teste de Excecoes: \n");
 		try {
 			Fachada.cadastrarProduto("CELULAR", 2500.0);

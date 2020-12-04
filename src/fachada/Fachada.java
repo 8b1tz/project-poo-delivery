@@ -35,7 +35,7 @@ public class Fachada {
 			throw new Exception("Telefone nao encontrado");
 		}
 	}
-
+	
 	public static Pedido getPedidoById(int idpedido)  throws Exception {
 		if (repositorio.localizarPedido(idpedido) != null) {
 			return repositorio.localizarPedido(idpedido);
@@ -70,7 +70,7 @@ public class Fachada {
 			throw new Exception("Cliente com esse telefone ja existe");
 		}
 	}
-
+	// cria pedido com base no telefone do cliente
 	public static Pedido criarPedido(String telefone) throws Exception {
         idpedido++;
         Cliente cli = null;
@@ -87,7 +87,7 @@ public class Fachada {
             throw new Exception("Cliente nao existe");
         }
     }
-
+	// cria pedido EXPRESS com base no telefone do cliente
 	public static Pedido criarPedido(String telefone, double taxaentrega)  throws Exception {
         idpedido++;
         Cliente cli = null;
@@ -104,6 +104,7 @@ public class Fachada {
         throw new Exception("Cliente nao existe");
 	}
 	
+	//adiciona Produto no Pedido do Cliente,e o Pedido no Produto e no Cliente 
 	public static void adicionarProdutoPedido(int idpedido, int idproduto) throws Exception {
 		Pedido pe;
 		Produto pr;
@@ -125,7 +126,8 @@ public class Fachada {
 			throw new Exception("Pedido com esse id nao existe");
 				}
 			}
-
+	
+	//remove Produto no Pedido do Cliente,e o Pedido no Produto  
 	public static void removerProdutoPedido(int idpedido, int idproduto)  throws Exception {
 		Pedido pe;
 		Produto pr;
@@ -141,7 +143,7 @@ public class Fachada {
 					pr.remPedido(pe);
 					pe.setValortotal(pe.geraValortotal());
 				}else {
-					throw new Exception("Produto com esse id nao existe dentro desse Pedido");
+					throw new Exception("Produto com esse id nao existe nesse Pedido");
 					}
 			}else {
 					throw new Exception("Produto com esse id nao existe");
@@ -151,6 +153,7 @@ public class Fachada {
 				}
 			}
 
+	// Retorna as informações do Pedido que tem o idpedido
 	public static Pedido consultarPedido(int idpedido) throws Exception {
 		Pedido res;
 		res = repositorio.localizarPedido(idpedido);
@@ -161,6 +164,7 @@ public class Fachada {
 		}
 	}
 
+	// Muda o Pago para verdadeiro e adiciona o nome do entregador
 	public static void pagarPedido(int idpedido, String nomeentregador) throws Exception {
 		Pedido res;
 		res = repositorio.localizarPedido(idpedido);
@@ -174,6 +178,7 @@ public class Fachada {
 
 	}
 
+	// Cancela o Pedido que tem idpedido e o tira de todos seus Produtos e de seu Cliente
 	public static void cancelarPedido(int idpedido) throws Exception {
 		Pedido res;
 		res = repositorio.localizarPedido(idpedido);
@@ -194,6 +199,7 @@ public class Fachada {
 
 	}
 
+	// Redorna a valor total adquirido naquele dia
 	public static double consultarArrecadacao(Integer dia) {
 		double total = 0;
 		for (Pedido p : repositorio.getPedidos()) {
@@ -204,6 +210,7 @@ public class Fachada {
 		return total;
 	}
 
+	// Retorna o/os Produtos com maior quantidade de vendas
 	public static ArrayList<Produto> consultarProdutoTop() {
         ArrayList<Produto> res = new ArrayList<>();
         HashMap<Produto, Integer> contagem = new HashMap<>();

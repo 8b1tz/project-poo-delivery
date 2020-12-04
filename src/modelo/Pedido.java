@@ -59,6 +59,7 @@ public class Pedido {
 		this.entregador = entregador;
 	}
 
+	// Retorna  todos os Produtos do Pedido
 	public ArrayList<Produto> getProdutos() {
 		return this.produtos;
 	}
@@ -68,6 +69,7 @@ public class Pedido {
 		this.produtos = produtos;
 	}
 
+	// Retorna true ou false 
 	public boolean isPago() {
 		return pago;
 	}
@@ -84,16 +86,19 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
+	// Adiciona Produto na lista de Produtos do Pedido
 	public void addProduto(Produto pr) {
 		this.produtos.add(pr);
 
 	}
 
+	// Remove Produto da lista de Produtos do Pedido
 	public void remProduto(Produto p) {
 		this.getProdutos().remove(p);
 
 	}
 	
+	// Retorna a soma dos precos de todos Produtos do Pedido
 	public double geraValortotal() {
 		double total = 0.0;
 		for(Produto p : this.getProdutos()) {
@@ -102,6 +107,7 @@ public class Pedido {
 		return total;
 	}
 
+	// Retorna todos ids dos Produtos do Pedido
 	public ArrayList<Integer> getProdutosIds() {
 		ArrayList<Integer> res = new ArrayList<>();
 		for (Produto p : getProdutos()) {
