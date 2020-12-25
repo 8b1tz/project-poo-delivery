@@ -4,8 +4,8 @@
 
 <h2>Foram utilizados:</h2>
 <ul>
-<li>- Java</br></li>
-<li>- Git</br></li>
+<li>- Java</li>
+<li>- Git</li>
 </ul>
 
 <h2>Foi feito por:</h2>
