@@ -3,7 +3,7 @@
 - Esse projeto foi feito para a diciplina de Programação orientada a objeto.
 
 <h2>Foi utilizado: </h2>
-- Java</br>
+<ul>- Java</br></ul>
 - Git</br>
 
 <h2>Foi feito por:</h2>
