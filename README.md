@@ -2,9 +2,10 @@
 
 - Esse projeto foi feito para a diciplina de Programação orientada a objeto.
 
-<h2>Foi utilizado: </h2>
-<ul>- Java</br></ul>
-- Git</br>
+<ul><h2>Foi utilizado: </h2>
+<li>- Java</br></li>
+<li>- Git</br></li>
+</ul>
 
 <h2>Foi feito por:</h2>
 - Ana Júlia Oliveira Lins --> https://github.com/AnaLinsDev </br>
