@@ -7,6 +7,6 @@
 - Git</br>
 
 <h2>Foi feito por:</h2>
-- Ana Júlia Oliveira Lins --> https://github.com/AnaLinsDev
+- Ana Júlia Oliveira Lins --> https://github.com/AnaLinsDev </br>
 - Yohanna de Oliveira Cavalcanti --> https://github.com/8b1tz
 
